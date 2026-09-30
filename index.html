@@ -111,7 +111,6 @@ a{color:inherit;text-decoration:none}
 /* ============ РЕДАКТОР ============ */
 #editor{display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
 
-/* --- ТОПБАР --- */
 .topbar{height:var(--topbar-h);min-height:var(--topbar-h);display:flex;align-items:center;justify-content:space-between;background:var(--panel);border-bottom:1px solid var(--border);padding:0 10px;gap:10px;position:relative;z-index:60}
 .topbar__l,.topbar__c,.topbar__r{display:flex;align-items:center;gap:6px;min-width:0}
 .topbar__l{flex:1}.topbar__r{justify-content:flex-end}
@@ -180,7 +179,6 @@ a{color:inherit;text-decoration:none}
 .pane{display:none}
 .pane.on{display:block}
 
-/* левая панель */
 .el-search{padding:10px;position:relative}
 .el-search input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:7px 30px 7px 10px;font-size:12.5px;outline:none;transition:.15s}
 .el-search input:focus{border-color:var(--accent)}
@@ -224,7 +222,6 @@ a{color:inherit;text-decoration:none}
 .asset:hover .asset__x{display:flex}
 .asset__x:hover{background:var(--danger)}
 
-/* холст */
 .canvas-area{flex:1;position:relative;overflow:auto;background:var(--bg);background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0);background-size:22px 22px;min-width:0}
 .canvas-area.grid-on{background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:24px 24px}
 .canvas-pad{padding:34px 30px 90px;display:flex;justify-content:center;min-height:100%}
@@ -246,7 +243,6 @@ a{color:inherit;text-decoration:none}
 
 .el-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#7b8496;font-size:12px;gap:8px;text-align:center;padding:10px}
 
-/* рамка выделения */
 .sel-frame{position:absolute;border:1.5px solid var(--accent);pointer-events:none;z-index:99999;display:none}
 .sel-frame .h{position:absolute;width:9px;height:9px;background:#fff;border:1.5px solid var(--accent);border-radius:2px;pointer-events:auto}
 .sel-frame .h[data-d="nw"]{left:-5px;top:-5px;cursor:nwse-resize}
@@ -265,7 +261,6 @@ a{color:inherit;text-decoration:none}
 .quick-bar button:hover{background:var(--accent-soft);color:var(--accent-2)}
 .quick-bar .qdiv{width:1px;background:var(--border);margin:4px 2px}
 
-/* правая панель */
 .sec{border-bottom:1px solid var(--border)}
 .sec__t{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--mute);cursor:pointer;user-select:none}
 .sec__t:hover{color:var(--text)}
@@ -339,21 +334,33 @@ a{color:inherit;text-decoration:none}
 .size-presets button{flex:1;height:22px;border-radius:4px;background:var(--bg);border:1px solid var(--border);color:var(--mute);font-size:10px;font-weight:600;transition:.12s}
 .size-presets button:hover{border-color:var(--accent);color:var(--accent-2)}
 
-/* соцсети чекбоксы */
 .net-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
 .net-chk{display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--bg);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:11px;color:var(--dim);transition:.12s}
 .net-chk:hover{border-color:var(--accent);color:var(--text)}
 .net-chk input{accent-color:var(--accent)}
-.net-url{margin-bottom:6px}
 
-/* контекстное меню */
+/* ---- REPEATER (для списков пунктов) ---- */
+.repeater{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.rep-item{display:flex;gap:5px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:6px;transition:.12s}
+.rep-item:hover{border-color:var(--border-2)}
+.rep-item__fields{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.rep-item__fields input,.rep-item__fields select,.rep-item__fields textarea{background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:5px 7px;font-size:11.5px;outline:none;width:100%;color:var(--text);resize:vertical}
+.rep-item__fields input:focus,.rep-item__fields select:focus,.rep-item__fields textarea:focus{border-color:var(--accent)}
+.rep-item__fields textarea{font-family:inherit;min-height:40px}
+.rep-item__ctrls{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.rep-item__ctrls button{width:22px;height:22px;border-radius:5px;background:var(--panel-2);color:var(--mute);font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;transition:.12s}
+.rep-item__ctrls button:hover{background:var(--accent-soft);color:var(--accent-2)}
+.rep-item__ctrls button.del:hover{background:var(--danger);color:#fff}
+.rep-add{padding:7px;border-radius:7px;background:var(--panel-2);border:1px dashed var(--border-2);color:var(--dim);font-size:11.5px;transition:.12s;display:flex;align-items:center;justify-content:center;gap:6px}
+.rep-add:hover{border-color:var(--accent);color:var(--accent-2);border-style:solid}
+.rep-hint{font-size:10.5px;color:var(--mute);padding:2px 0 8px;line-height:1.5}
+
 .ctx{position:fixed;background:var(--panel);border:1px solid var(--border-2);border-radius:10px;padding:5px;min-width:220px;box-shadow:var(--shadow);display:none;z-index:2000}
 .ctx.on{display:block;animation:pop .1s ease}
 .ctx button{display:flex;align-items:center;gap:9px;width:100%;padding:7px 10px;border-radius:6px;font-size:12.5px;text-align:left;transition:.1s}
 .ctx button:hover{background:var(--accent-soft);color:var(--accent-2)}
 .ctx .sep{height:1px;background:var(--border);margin:4px 3px}
 
-/* модалки */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:3000;padding:24px}
 .overlay.on{display:flex}
 .modal{background:var(--panel);border:1px solid var(--border-2);border-radius:14px;box-shadow:var(--shadow);width:100%;max-width:560px;max-height:86vh;display:flex;flex-direction:column;animation:pop .16s ease}
@@ -385,7 +392,6 @@ a{color:inherit;text-decoration:none}
 .help ul{padding-left:18px}
 .help kbd{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px;font-family:inherit}
 
-/* предпросмотр */
 .preview{position:fixed;inset:0;background:var(--bg-2);z-index:2500;display:none;flex-direction:column}
 .preview.on{display:flex}
 .preview__t{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--border);gap:14px}
@@ -397,7 +403,6 @@ a{color:inherit;text-decoration:none}
 .preview__f{flex:1;overflow:auto;background:#1a1d24;display:flex;justify-content:center;padding:20px}
 .preview iframe{background:#fff;border:none;border-radius:8px;box-shadow:var(--shadow);transition:width .2s}
 
-/* тосты */
 .toasts{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;gap:9px;z-index:5000;pointer-events:none}
 .toast{background:var(--panel);border:1px solid var(--border-2);border-left:3px solid var(--accent);border-radius:9px;padding:11px 16px;font-size:12.5px;box-shadow:var(--shadow);animation:slideIn .25s ease;max-width:320px}
 .toast.ok{border-left-color:var(--ok)}
@@ -436,7 +441,7 @@ a{color:inherit;text-decoration:none}
     <section class="l-hero">
       <div class="l-badge">Beta — полностью бесплатно</div>
       <h1 class="l-title">Создавай сайты.<br/><em>Визуально.</em></h1>
-      <p class="l-sub">Перетаскивай блоки, редактируй текст, настраивай стили — и скачай готовый HTML/CSS/JS одним архивом. Сайты автоматически адаптируются под мобильные.</p>
+      <p class="l-sub">Перетаскивай блоки, редактируй текст, настраивай стили — и скачай готовый HTML/CSS/JS одним архивом. Всё работает по-настоящему: формы, табы, аккордеоны, дропдауны.</p>
       <div class="l-actions">
         <button class="l-btn l-btn--primary l-btn--lg" onclick="openEditor()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
@@ -468,7 +473,7 @@ a{color:inherit;text-decoration:none}
       <div class="l-grid">
         <div class="l-card"><div class="l-card__i">⚡</div><h3>Drag &amp; Drop</h3><p>Перетаскивай элементы прямо на холст. Никакого кода — только мышь.</p></div>
         <div class="l-card"><div class="l-card__i">📄</div><h3>Многостраничность</h3><p>Создавай неограниченное количество страниц. Каждая — отдельный файл в архиве.</p></div>
-        <div class="l-card"><div class="l-card__i">🔗</div><h3>Ссылки и навигация</h3><p>Внутренние переходы, внешние URL, якоря, модальные окна — всё поддерживается.</p></div>
+        <div class="l-card"><div class="l-card__i">🎛</div><h3>Реальные интерактивы</h3><p>Формы, табы, аккордеоны, дропдауны, слайдеры — работают в экспорте.</p></div>
         <div class="l-card"><div class="l-card__i">🎨</div><h3>Полная стилизация</h3><p>Цвета, шрифты, отступы, тени, градиенты, фильтры, трансформации.</p></div>
         <div class="l-card"><div class="l-card__i">✨</div><h3>Анимации</h3><p>Появление при скролле, hover-эффекты, parallax — настройка в пару кликов.</p></div>
         <div class="l-card"><div class="l-card__i">📦</div><h3>Экспорт в ZIP</h3><p>Скачай архив с HTML, страницами, ассетами. Готово к публикации на любом хостинге.</p></div>
@@ -501,7 +506,7 @@ a{color:inherit;text-decoration:none}
         <div class="l-faq__i"><button class="l-faq__q" onclick="faqToggle(this)">Можно ли опубликовать сайт?<span>+</span></button><div class="l-faq__a">Да. Скачай ZIP и загрузи на любой хостинг: GitHub Pages, Netlify, Vercel, обычный shared-хостинг. Никаких ограничений.</div></div>
         <div class="l-faq__i"><button class="l-faq__q" onclick="faqToggle(this)">Сохраняются ли проекты?<span>+</span></button><div class="l-faq__a">Автоматически в localStorage браузера. Медиафайлы — в IndexedDB (без ограничений по размеру). Можно экспортировать проект в JSON-файл.</div></div>
         <div class="l-faq__i"><button class="l-faq__q" onclick="faqToggle(this)">Какой код генерируется?<span>+</span></button><div class="l-faq__a">Чистый семантический HTML5, CSS3 и vanilla JS. Никаких фреймворков — полная независимость.</div></div>
-        <div class="l-faq__i"><button class="l-faq__q" onclick="faqToggle(this)">Это правда бесплатно?<span>+</span></button><div class="l-faq__a">Да, полностью. Проект в открытом бета-тестировании.</div></div>
+        <div class="l-faq__i"><button class="l-faq__q" onclick="faqToggle(this)">Работают ли интерактивные элементы?<span>+</span></button><div class="l-faq__a">Да, все: формы, табы, аккордеоны, дропдауны, модалки, слайдеры, рейтинги, счётчики. Всё работает как в предпросмотре, так и на экспортированном сайте.</div></div>
       </div>
     </div>
   </section>
@@ -563,8 +568,6 @@ a{color:inherit;text-decoration:none}
             <div class="tmenu__sep"></div>
             <button onclick="copyStyle()"><span>🎨</span>Скопировать стиль</button>
             <button onclick="pasteStyle()"><span>🖌</span>Вставить стиль</button>
-            <div class="tmenu__sep"></div>
-            <button onclick="selectAllEls()"><span>⬜</span>Выделить всё <kbd>Ctrl+A</kbd></button>
           </div>
         </div>
         <div class="tmenu">
@@ -1112,6 +1115,7 @@ const kebab = s => s.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const num = v => { const n = parseFloat(v); return isNaN(n) ? 0 : n; };
 function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+function escAttr(s) { return String(s || '').replace(/"/g, '&quot;'); }
 
 /* ============================================================
    TOASTS
@@ -1151,7 +1155,7 @@ const DB = {
 /* ============================================================
    СОСТОЯНИЕ
    ============================================================ */
-const STORAGE_KEY = 'siter_geenerik_v4';
+const STORAGE_KEY = 'siter_geenerik_v5';
 const CANVAS_W = { desktop: 1200, tablet: 768, mobile: 375 };
 
 let State = {
@@ -1305,7 +1309,6 @@ const LIB = [
     { type: 'progress', name: 'Прогресс', icon: '▰' },
     { type: 'counter', name: 'Счётчик', icon: '42' },
     { type: 'badge', name: 'Бейдж', icon: '🏷' },
-    { type: 'toast-el', name: 'Уведомление', icon: '🔔' },
     { type: 'tooltip', name: 'Тултип', icon: '💬' },
     { type: 'rating', name: 'Рейтинг', icon: '★★★★★' }
   ]},
@@ -1321,6 +1324,8 @@ const LIB = [
     { type: 'input-text', name: 'Текст', icon: '▭' },
     { type: 'input-email', name: 'Email', icon: '@' },
     { type: 'input-pass', name: 'Пароль', icon: '🔒' },
+    { type: 'input-tel', name: 'Телефон', icon: '☎' },
+    { type: 'input-number', name: 'Число', icon: '#' },
     { type: 'textarea', name: 'Текстарея', icon: '▤' },
     { type: 'select', name: 'Select', icon: '▾' },
     { type: 'checkbox', name: 'Чекбокс', icon: '☑' },
@@ -1349,8 +1354,6 @@ const LIB = [
     { type: 'js-raw', name: 'JS-код', icon: 'JS' },
     { type: 'cookie', name: 'Cookie', icon: '🍪' },
     { type: 'backtop', name: 'Наверх', icon: '⬆' },
-    { type: 'loader', name: 'Загрузчик', icon: '⟳' },
-    { type: 'particles', name: 'Частицы', icon: '✦' },
     { type: 'scrollbar', name: 'Индикатор', icon: '↓' }
   ]}
 ];
@@ -1361,18 +1364,24 @@ const findDef = t => ALL_DEFS.find(d => d.type === t);
    КОМПОНЕНТЫ — ОБЩИЙ CSS (для редактора и экспорта)
    ============================================================ */
 const COMPONENT_CSS = `
+/* --- Runtime defaults --- */
+.siter-runtime *{box-sizing:border-box}
+.siter-canvas input,.siter-canvas textarea,.siter-canvas select,.siter-canvas button{font-family:inherit;color:inherit}
+
+/* --- Dropdown --- */
 .siter-dd{position:relative;width:100%;height:100%;font:inherit;color:inherit}
-.siter-dd__btn{width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:inherit;color:inherit;border:none;font:inherit;cursor:pointer;text-align:left;gap:8px}
-.siter-dd__arrow{transition:.2s;opacity:.7;flex-shrink:0}
+.siter-dd__btn{width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:transparent;color:inherit;border:none;font:inherit;cursor:pointer;text-align:left;gap:8px}
+.siter-dd__arrow{transition:.2s;opacity:.7;flex-shrink:0;font-size:12px}
 .siter-dd.open .siter-dd__arrow{transform:rotate(180deg)}
 .siter-dd__menu{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#131821;border:1px solid #2c3342;border-radius:10px;padding:6px;display:none;z-index:1200;box-shadow:0 10px 40px rgba(0,0,0,.5);min-width:100%}
 .siter-dd.open .siter-dd__menu{display:block;animation:siter-pop .12s ease}
 @keyframes siter-pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.siter-dd__menu a{display:block;padding:9px 12px;color:#c3cad8;border-radius:6px;font-size:13.5px;text-decoration:none;transition:.12s;white-space:nowrap}
-.siter-dd__menu a:hover{background:#4f7cff22;color:#6b93ff}
+.siter-dd__menu a,.siter-dd__menu button{display:block;width:100%;text-align:left;padding:9px 12px;color:#c3cad8;border-radius:6px;font-size:13.5px;text-decoration:none;transition:.12s;white-space:nowrap;background:none;border:none;cursor:pointer;font-family:inherit}
+.siter-dd__menu a:hover,.siter-dd__menu button:hover{background:#4f7cff22;color:#6b93ff}
 
+/* --- Tabs --- */
 .siter-tabs{display:flex;flex-direction:column;height:100%;width:100%}
-.siter-tabs__nav{display:flex;border-bottom:1px solid #232936;overflow-x:auto}
+.siter-tabs__nav{display:flex;border-bottom:1px solid #232936;overflow-x:auto;flex-shrink:0}
 .siter-tabs__nav button{padding:12px 20px;background:none;border:none;border-bottom:2px solid transparent;color:#8b93a7;font:inherit;font-size:13.5px;cursor:pointer;white-space:nowrap;transition:.15s}
 .siter-tabs__nav button:hover{color:#e7eaf1}
 .siter-tabs__nav button.on{color:#6b93ff;border-bottom-color:#4f7cff}
@@ -1380,6 +1389,7 @@ const COMPONENT_CSS = `
 .siter-tabs__pane{display:none;color:#c3cad8;font-size:14px;line-height:1.7}
 .siter-tabs__pane.on{display:block}
 
+/* --- Accordion --- */
 .siter-acc{display:flex;flex-direction:column;height:100%;width:100%;overflow:auto}
 .siter-acc__item{border-bottom:1px solid #232936}
 .siter-acc__item:last-child{border-bottom:none}
@@ -1389,13 +1399,16 @@ const COMPONENT_CSS = `
 .siter-acc__body{max-height:0;overflow:hidden;padding:0 20px;color:#8b93a7;font-size:13.5px;line-height:1.7;transition:.3s ease}
 .siter-acc__item.open .siter-acc__body{max-height:500px;padding:0 20px 18px}
 
+/* --- Counter --- */
 .siter-counter{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%}
 .siter-counter__val{font-size:48px;font-weight:900;color:#4f7cff;line-height:1.05;font-variant-numeric:tabular-nums}
 .siter-counter__label{font-size:13px;color:#8b93a7;margin-top:8px;text-transform:uppercase;letter-spacing:1px}
 
+/* --- Progress --- */
 .siter-progress{position:relative;width:100%;height:100%;border-radius:inherit;overflow:hidden;background:inherit}
 .siter-progress__bar{height:100%;width:0;background:linear-gradient(90deg,#4f7cff,#a06bff);border-radius:inherit;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
 
+/* --- Form --- */
 .siter-form{display:flex;flex-direction:column;gap:12px;width:100%;height:100%}
 .siter-form__title{font-size:19px;font-weight:700;color:#fff;margin-bottom:6px}
 .siter-form input,.siter-form textarea,.siter-form select{width:100%;padding:12px 14px;background:#0f1218;border:1px solid #2c3342;border-radius:8px;color:#e7eaf1;font:inherit;font-size:14px;outline:none;transition:.15s}
@@ -1406,6 +1419,7 @@ const COMPONENT_CSS = `
 .siter-form__msg{display:none;padding:11px 14px;background:#2ecc7122;color:#2ecc71;border-radius:8px;font-size:13px;border:1px solid #2ecc7144}
 .siter-form__msg.err{background:#ff4d5e22;color:#ff4d5e;border-color:#ff4d5e44}
 
+/* --- Modal --- */
 .siter-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
 .siter-modal.open{display:flex}
 .siter-modal__box{position:relative;max-width:500px;width:100%;max-height:90vh;overflow:auto;background:#141821;border:1px solid #2c3342;border-radius:16px;padding:30px;animation:siter-modal-pop .25s ease;color:#e7eaf1}
@@ -1415,53 +1429,58 @@ const COMPONENT_CSS = `
 .siter-modal__title{font-size:20px;font-weight:700;color:#fff;margin-bottom:14px;padding-right:36px}
 .siter-modal__body{font-size:14px;color:#a9b2c4;line-height:1.7}
 
+/* --- Cookie --- */
 .siter-cookie{display:flex;align-items:center;gap:14px;width:100%;height:100%;padding:16px 20px;background:inherit;border:inherit;border-radius:inherit;color:#c3cad8;font-size:13px;box-sizing:border-box}
 .siter-cookie__icon{font-size:22px;flex-shrink:0}
 .siter-cookie__text{flex:1;line-height:1.5;font-size:13px;color:inherit}
 .siter-cookie__ok{padding:9px 18px;background:#4f7cff;color:#fff;border:none;border-radius:8px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:.15s}
 .siter-cookie__ok:hover{background:#6b93ff}
 
+/* --- Social --- */
 .siter-social{display:flex;gap:10px;flex-wrap:wrap;align-items:center;width:100%;height:100%}
 .siter-social__link{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:#1a1f2a;border:1px solid #2c3342;color:#a9b2c4;text-decoration:none;transition:.15s}
 .siter-social__link:hover{background:#4f7cff;border-color:#4f7cff;color:#fff;transform:translateY(-2px)}
 .siter-social__link svg{width:18px;height:18px;fill:currentColor}
 
+/* --- Rating --- */
 .siter-rating{display:flex;gap:3px;width:100%;height:100%;align-items:center}
-.siter-rating span{font-size:inherit;color:#3a4252;line-height:1}
+.siter-rating span{font-size:inherit;color:#3a4252;line-height:1;cursor:pointer;transition:transform .12s;user-select:none}
 .siter-rating span.on{color:#ffb020}
+.siter-rating span:hover{transform:scale(1.15)}
 
-.siter-backtop{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:inherit;border-radius:inherit;color:inherit;font-size:20px;cursor:pointer;border:none}
-
-.siter-scrollbar{width:0;height:100%;background:inherit;border-radius:inherit;transition:width .1s linear}
-
-.siter-navbar{display:flex;align-items:center;justify-content:space-between;height:100%;padding:0 34px;width:100%;box-sizing:border-box}
+/* --- Navbar --- */
+.siter-navbar{display:flex;align-items:center;justify-content:space-between;height:100%;padding:0 34px;width:100%;box-sizing:border-box;position:relative}
 .siter-navbar__brand{font-size:17px;font-weight:800;letter-spacing:-.5px;color:#fff;text-decoration:none;flex-shrink:0}
 .siter-navbar__menu{display:flex;gap:26px}
 .siter-navbar__menu a{color:#a9b2c4;font-size:14px;text-decoration:none;transition:.15s}
 .siter-navbar__menu a:hover{color:#fff}
 .siter-navbar__toggle{display:none;width:34px;height:34px;background:none;border:none;color:#e7eaf1;cursor:pointer;font-size:20px;padding:0}
 
+/* --- Table --- */
 .siter-table-wrap{width:100%;height:100%;overflow:auto;border-radius:inherit}
 .siter-table{width:100%;border-collapse:collapse;font-size:13.5px}
 .siter-table th{text-align:left;padding:12px 16px;background:#131821;color:#8b93a7;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #232936}
 .siter-table td{padding:12px 16px;color:#c3cad8;border-bottom:1px solid #1a1f2a}
 
+/* --- Pricing --- */
 .siter-pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:100%}
 .siter-pricing__item{background:#131821;border:1px solid #232936;border-radius:16px;padding:26px;display:flex;flex-direction:column}
 .siter-pricing__item--hot{border:2px solid #4f7cff;position:relative}
-.siter-pricing__item--hot::before{content:'★ Популярно';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#4f7cff;color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.siter-pricing__item--hot::before{content:'★ Популярно';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#4f7cff;color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
 .siter-pricing__name{font-size:13px;color:#8b93a7;font-weight:600;text-transform:uppercase;letter-spacing:1px}
 .siter-pricing__price{font-size:38px;font-weight:900;color:#fff;margin:14px 0}
 .siter-pricing__feat{font-size:13px;color:#8b93a7;flex:1;line-height:1.7}
-.siter-pricing__btn{margin-top:20px;padding:12px 20px;border-radius:9px;text-align:center;color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:.15s;display:block}
-.siter-pricing__btn:hover{opacity:.9}
+.siter-pricing__btn{margin-top:20px;padding:12px 20px;border-radius:9px;text-align:center;color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:.15s;display:block;border:none;cursor:pointer;font-family:inherit}
+.siter-pricing__btn:hover{opacity:.9;transform:translateY(-2px)}
 
+/* --- Team --- */
 .siter-team{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;height:100%}
 .siter-team__item{text-align:center}
 .siter-team__avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 14px;background-size:cover;background-position:center;background-color:#1a1f2a}
 .siter-team__name{font-size:14px;font-weight:600;color:#fff}
 .siter-team__role{font-size:12px;color:#8b93a7;margin-top:3px}
 
+/* --- FAQ --- */
 .siter-faq{display:flex;flex-direction:column}
 .siter-faq__item{border-bottom:1px solid #232936}
 .siter-faq__q{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 0;background:none;border:none;color:#e7eaf1;font:inherit;font-size:15px;font-weight:600;text-align:left;cursor:pointer;gap:16px}
@@ -1470,41 +1489,100 @@ const COMPONENT_CSS = `
 .siter-faq__a{max-height:0;overflow:hidden;color:#8b93a7;font-size:13.5px;line-height:1.7;transition:.3s}
 .siter-faq__item.open .siter-faq__a{max-height:400px;padding-bottom:16px}
 
+/* --- Timeline --- */
 .siter-timeline{position:relative;padding-left:30px;height:100%}
 .siter-timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:#232936}
 .siter-timeline__item{position:relative;margin-bottom:22px;padding-left:20px;color:#c3cad8;font-size:14px}
 .siter-timeline__item:last-child{margin-bottom:0}
 .siter-timeline__item::before{content:'';position:absolute;left:-26px;top:4px;width:14px;height:14px;border-radius:50%;background:#4f7cff;border:3px solid #0f1218;box-sizing:border-box}
 
+/* --- Steps --- */
 .siter-steps{display:flex;align-items:center;justify-content:center;gap:14px;height:100%;flex-wrap:wrap}
 .siter-steps__item{display:flex;align-items:center;gap:12px}
 .siter-steps__num{width:38px;height:38px;border-radius:50%;background:#4f7cff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
 .siter-steps__label{color:#c3cad8;font-size:14px}
 .siter-steps__arrow{color:#4f7cff;margin:0 6px;font-size:18px}
 
+/* --- Stats --- */
 .siter-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;height:100%}
 .siter-stats__item{background:#131821;border:1px solid #232936;border-radius:14px;padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
 .siter-stats__val{font-size:32px;font-weight:900;color:#4f7cff;line-height:1.1}
 .siter-stats__label{font-size:12px;color:#8b93a7;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
 
+/* --- Avatar --- */
 .siter-avatar{width:100%;height:100%;border-radius:inherit;background-size:cover;background-position:center;background-color:#4f7cff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:26px}
 
+/* --- Breadcrumb --- */
 .siter-breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:#8b93a7;width:100%;height:100%}
 .siter-breadcrumb span:last-child{color:#e7eaf1}
 .siter-breadcrumb i{font-style:normal;opacity:.5}
 
+/* --- Pagination --- */
 .siter-pagination{display:flex;gap:8px;width:100%;height:100%;align-items:center}
 .siter-pagination button{width:38px;height:38px;border-radius:9px;background:#1a1f2a;border:none;color:#8b93a7;font:inherit;font-size:13px;cursor:pointer;transition:.15s}
 .siter-pagination button.on{background:#4f7cff;color:#fff}
 .siter-pagination button:hover{background:#2a3142;color:#fff}
 
+/* --- Sidebar --- */
 .siter-sidebar{padding:20px 0;height:100%;width:100%;display:flex;flex-direction:column}
 .siter-sidebar__logo{padding:0 20px 20px;font-size:16px;font-weight:800;color:#fff}
-.siter-sidebar__item{padding:11px 20px;font-size:13.5px;color:#8b93a7;border-left:2px solid transparent;transition:.15s;display:block;text-decoration:none;cursor:pointer}
+.siter-sidebar__item{padding:11px 20px;font-size:13.5px;color:#8b93a7;border-left:2px solid transparent;transition:.15s;display:block;text-decoration:none;cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;font-family:inherit;text-align:left;width:100%}
 .siter-sidebar__item.on{color:#6b93ff;background:#4f7cff14;border-left-color:#4f7cff}
 .siter-sidebar__item:hover{color:#e7eaf1;background:#ffffff08}
 
+/* --- Footer --- */
 .siter-footer{display:flex;align-items:center;justify-content:center;height:100%;width:100%;padding:0 20px;box-sizing:border-box;text-align:center}
+
+/* --- Range slider --- */
+.siter-range{width:100%;height:100%;display:flex;align-items:center;padding:0 4px}
+.siter-range input[type=range]{width:100%;accent-color:#4f7cff;cursor:pointer;height:6px}
+
+/* --- Radio --- */
+.siter-radio{display:flex;flex-direction:column;gap:10px;width:100%;padding:4px}
+.siter-radio label{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:#c3cad8;user-select:none}
+.siter-radio input[type=radio]{accent-color:#4f7cff;width:17px;height:17px;cursor:pointer;margin:0}
+
+/* --- Checkbox --- */
+.siter-checkbox{display:flex;align-items:center;gap:10px;height:100%;cursor:pointer;font-size:14px;color:#c3cad8;user-select:none;padding:4px}
+.siter-checkbox input[type=checkbox]{accent-color:#4f7cff;width:18px;height:18px;cursor:pointer;margin:0}
+
+/* --- Input / textarea / select --- */
+.siter-input{width:100%;height:100%;background:transparent;border:none;outline:none;color:inherit;font:inherit;padding:0 14px;font-size:14px}
+.siter-textarea{width:100%;height:100%;background:transparent;border:none;outline:none;color:inherit;font:inherit;padding:14px;resize:none;font-size:14px}
+.siter-select{width:100%;height:100%;background:transparent;border:none;outline:none;color:inherit;font:inherit;padding:0 14px;font-size:14px;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b93a7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+
+/* --- Toggle --- */
+.siter-toggle{width:100%;height:100%;border-radius:100px;background:#2c3342;position:relative;transition:.2s;cursor:pointer;border:none;padding:0}
+.siter-toggle.on{background:#4f7cff}
+.siter-toggle::after{content:'';position:absolute;top:50%;left:4px;transform:translateY(-50%);width:calc(100% - 8px);max-width:26px;height:calc(100% - 8px);max-height:26px;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:.2s}
+.siter-toggle.on::after{left:calc(100% - 4px);transform:translate(-100%,-50%)}
+
+/* --- Progress (rating) --- */
+.siter-file{width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;background:transparent;border:none;color:inherit;font:inherit}
+
+/* --- Badge / Tooltip --- */
+.siter-tooltip{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.siter-tooltip__tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0f1218;color:#e7eaf1;font-size:12px;padding:6px 10px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s;border:1px solid #2c3342;z-index:100}
+.siter-tooltip__tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0f1218}
+.siter-tooltip:hover .siter-tooltip__tip{opacity:1}
+
+/* --- Back to top --- */
+.siter-backtop{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:transparent;border:none;border-radius:inherit;color:inherit;font-size:20px;cursor:pointer;font-family:inherit;padding:0}
+
+/* --- Scrollbar indicator --- */
+.siter-scrollbar-wrap{width:100%;height:100%;background:#1a1f2a;border-radius:inherit;overflow:hidden}
+.siter-scrollbar-fill{height:100%;width:0;background:linear-gradient(90deg,#4f7cff,#a06bff);border-radius:inherit;transition:width .1s linear}
+
+/* --- Particles decorative --- */
+.siter-particles{width:100%;height:100%;position:relative;overflow:hidden}
+.siter-particles::before,.siter-particles::after{content:'';position:absolute;border-radius:50%;background:radial-gradient(circle,#4f7cff88,transparent 70%);animation:siter-float 6s ease-in-out infinite}
+.siter-particles::before{width:60%;height:60%;left:-10%;top:-20%}
+.siter-particles::after{width:50%;height:50%;right:-15%;bottom:-15%;background:radial-gradient(circle,#a06bff88,transparent 70%);animation-delay:-3s}
+@keyframes siter-float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+
+/* --- Animations --- */
+@keyframes siter-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes siter-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 `;
 
 /* ============================================================
@@ -1540,18 +1618,18 @@ function makeEl(type, x, y) {
     label: { w: 220, h: 36, x: 80, y: 80, content: { text: 'Небольшая метка' }, styles: { fontSize: '14px', color: '#8b93a7' } },
 
     image: { w: 520, h: 320, x: 80, y: 80, content: { src: '', alt: '' }, styles: { borderRadius: '12px', objectFit: 'cover', background: '#1a1f2a' } },
-    video: { w: 620, h: 360, x: 80, y: 80, content: { src: '' }, styles: { borderRadius: '12px', background: '#000' } },
+    video: { w: 620, h: 360, x: 80, y: 80, content: { src: '', controls: true, muted: true, loop: false, autoplay: false }, styles: { borderRadius: '12px', background: '#000' } },
     youtube: { w: 640, h: 360, x: 80, y: 80, content: { id: 'dQw4w9WgXcQ' }, styles: { borderRadius: '12px' } },
-    audio: { w: 420, h: 54, x: 80, y: 80, content: { src: '' }, styles: {} },
+    audio: { w: 420, h: 54, x: 80, y: 80, content: { src: '', controls: true }, styles: {} },
     icon: { w: 60, h: 60, x: 80, y: 80, content: { char: '★' }, styles: { fontSize: '48px', color: '#4f7cff', lineHeight: '1', textAlign: 'center' } },
     iframe: { w: 640, h: 400, x: 80, y: 80, content: { src: 'https://example.com' }, styles: { borderRadius: '12px', border: '1px solid #232936' } },
     map: { w: 640, h: 340, x: 80, y: 80, content: { src: '' }, styles: { borderRadius: '12px', background: 'linear-gradient(135deg,#1e3a5f,#0f172a)', border: '1px solid #232936' } },
     gallery: { w: 800, h: 300, x: 80, y: 80, content: { count: 4 }, styles: { gap: '12px' } },
 
-    button: { w: 200, h: 50, x: 80, y: 80, content: { text: 'Кнопка' }, styles: { background: '#4f7cff', color: '#ffffff', borderRadius: '10px', fontSize: '15px', fontWeight: '600', textAlign: 'center', lineHeight: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' } },
+    button: { w: 200, h: 50, x: 80, y: 80, content: { text: 'Кнопка' }, styles: { background: '#4f7cff', color: '#ffffff', borderRadius: '10px', fontSize: '15px', fontWeight: '600', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: 'none', fontFamily: 'inherit' } },
     link: { w: 160, h: 28, x: 80, y: 80, content: { text: 'Текст ссылки' }, styles: { color: '#6b93ff', fontSize: '15px', textDecoration: 'underline', lineHeight: '1' } },
 
-    modal: { w: 240, h: 50, x: 80, y: 80, content: { text: 'Открыть модалку', modalTitle: 'Заголовок окна', modalBody: 'Это содержимое модального окна. Можно вставить любой текст.' }, styles: { background: '#4f7cff', color: '#ffffff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: '600', cursor: 'pointer' } },
+    modal: { w: 240, h: 50, x: 80, y: 80, content: { text: 'Открыть модалку', modalTitle: 'Заголовок окна', modalBody: 'Это содержимое модального окна. Можно вставить любой текст.', modalSize: 'md' }, styles: { background: '#4f7cff', color: '#ffffff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: '600', cursor: 'pointer' } },
 
     dropdown: { w: 260, h: 48, x: 80, y: 80, content: { text: 'Выберите…', items: [
       { label: 'Опция 1', url: '#' }, { label: 'Опция 2', url: '#' }, { label: 'Опция 3', url: '#' }
@@ -1561,7 +1639,7 @@ function makeEl(type, x, y) {
       { title: 'Первый вопрос', body: 'Ответ на первый вопрос.' },
       { title: 'Второй вопрос', body: 'Ответ на второй вопрос.' },
       { title: 'Третий вопрос', body: 'Ответ на третий вопрос.' }
-    ]}, styles: { border: '1px solid #232936', borderRadius: '12px', background: '#131821' } },
+    ], firstOpen: false }, styles: { border: '1px solid #232936', borderRadius: '12px', background: '#131821' } },
 
     tabs: { w: 620, h: 240, x: 80, y: 80, content: { items: [
       { label: 'Таб 1', body: 'Содержимое первой вкладки.' },
@@ -1572,21 +1650,21 @@ function makeEl(type, x, y) {
     progress: { w: 400, h: 12, x: 80, y: 80, content: { value: 65 }, styles: { background: '#1a1f2a', borderRadius: '100px', overflow: 'hidden' } },
     counter: { w: 220, h: 110, x: 80, y: 80, content: { value: 128, label: 'Клиентов', duration: 1400, suffix: '' }, styles: {} },
     badge: { w: 90, h: 28, x: 80, y: 80, content: { text: 'NEW' }, styles: { background: '#4f7cff', color: '#ffffff', borderRadius: '100px', fontSize: '12px', fontWeight: '700', textAlign: 'center', lineHeight: '28px', letterSpacing: '.5px' } },
-    'toast-el': { w: 320, h: 66, x: 80, y: 80, content: { text: 'Уведомление отправлено' }, styles: { background: '#131821', border: '1px solid #2c3342', borderLeft: '3px solid #4f7cff', borderRadius: '10px', color: '#e7eaf1', paddingLeft: '18px', lineHeight: '64px', fontSize: '14px' } },
-    tooltip: { w: 160, h: 40, x: 80, y: 80, content: { text: 'Наведи на меня' }, styles: { background: '#1a1f2a', color: '#e7eaf1', border: '1px dashed #2c3342', borderRadius: '8px', textAlign: 'center', lineHeight: '38px', fontSize: '13px' } },
-    rating: { w: 160, h: 34, x: 80, y: 80, content: { value: 5 }, styles: { fontSize: '26px', letterSpacing: '3px', lineHeight: '1' } },
+    tooltip: { w: 160, h: 40, x: 80, y: 80, content: { text: 'Наведи на меня', tip: 'Подсказка!' }, styles: { background: '#1a1f2a', color: '#e7eaf1', border: '1px dashed #2c3342', borderRadius: '8px', textAlign: 'center', lineHeight: '38px', fontSize: '13px' } },
+    rating: { w: 160, h: 34, x: 80, y: 80, content: { value: 5, interactive: true }, styles: { fontSize: '26px', letterSpacing: '3px', lineHeight: '1' } },
 
     navbar: { w: 1200, h: 66, x: 0, y: 0, content: { brand: 'BRAND', items: [
       { label: 'Главная', url: 'index.html' }, { label: 'О нас', url: '#' }, { label: 'Контакты', url: '#contact' }
     ]}, styles: { background: '#0f1218ee', borderBottom: '1px solid #232936', backdropFilter: 'blur(12px)' } },
 
     breadcrumb: { w: 400, h: 26, x: 80, y: 80, content: { items: ['Главная', 'Каталог', 'Товар'] }, styles: {} },
-    pagination: { w: 300, h: 40, x: 80, y: 80, content: { pages: 5 }, styles: {} },
+    pagination: { w: 300, h: 40, x: 80, y: 80, content: { pages: 5, current: 1 }, styles: {} },
     sidebar: { w: 240, h: 340, x: 0, y: 0, content: { brand: 'LOGO', items: ['Дашборд', 'Проекты', 'Задачи', 'Настройки'] }, styles: { background: '#0f1218', borderRight: '1px solid #232936' } },
     footer: { w: 1200, h: 140, x: 0, y: 600, content: { text: '© 2025 Все права защищены' }, styles: { background: '#0b0e14', borderTop: '1px solid #232936', color: '#8b93a7', fontSize: '13px' } },
 
     form: { w: 480, h: 420, x: 80, y: 80, content: {
       title: 'Оставьте заявку', submitText: 'Отправить', action: '',
+      successText: 'Спасибо! Заявка отправлена.',
       fields: [
         { type: 'text', placeholder: 'Ваше имя', required: true },
         { type: 'email', placeholder: 'Email', required: true },
@@ -1594,20 +1672,22 @@ function makeEl(type, x, y) {
       ]
     }, styles: { background: '#131821', border: '1px solid #232936', borderRadius: '14px', padding: '28px' } },
 
-    'input-text': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'Введите текст…' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', paddingLeft: '14px' } },
-    'input-email': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'email@example.com' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', paddingLeft: '14px' } },
-    'input-pass': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: '••••••••' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', paddingLeft: '14px' } },
-    textarea: { w: 340, h: 130, x: 80, y: 80, content: { placeholder: 'Ваше сообщение…' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', padding: '14px' } },
-    select: { w: 340, h: 46, x: 80, y: 80, content: { options: ['Опция 1', 'Опция 2', 'Опция 3'] }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', paddingLeft: '14px' } },
-    checkbox: { w: 240, h: 28, x: 80, y: 80, content: { text: 'Согласен с условиями' }, styles: { color: '#c3cad8', fontSize: '14px' } },
-    radio: { w: 240, h: 28, x: 80, y: 80, content: { text: 'Вариант ответа' }, styles: { color: '#c3cad8', fontSize: '14px' } },
-    toggle: { w: 62, h: 32, x: 80, y: 80, content: { on: true }, styles: { background: '#4f7cff', borderRadius: '100px', cursor: 'pointer' } },
-    range: { w: 320, h: 30, x: 80, y: 80, content: { value: 60 }, styles: {} },
-    date: { w: 260, h: 46, x: 80, y: 80, content: { value: '' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1', fontSize: '14px', paddingLeft: '14px' } },
-    file: { w: 300, h: 60, x: 80, y: 80, content: { text: 'Выбрать файл' }, styles: { border: '2px dashed #2c3342', borderRadius: '10px', color: '#8b93a7', textAlign: 'center', lineHeight: '56px', fontSize: '13px', cursor: 'pointer' } },
+    'input-text': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'Введите текст…', value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    'input-email': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'email@example.com', value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    'input-pass': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: '••••••••', value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    'input-tel': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: '+7 (___) ___-__-__', value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    'input-number': { w: 340, h: 46, x: 80, y: 80, content: { placeholder: '0', value: '', name: '', required: false, min: '', max: '', step: '' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    textarea: { w: 340, h: 130, x: 80, y: 80, content: { placeholder: 'Ваше сообщение…', value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    select: { w: 340, h: 46, x: 80, y: 80, content: { options: ['Опция 1', 'Опция 2', 'Опция 3'], name: '', required: false, placeholder: 'Выберите…' }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    checkbox: { w: 240, h: 28, x: 80, y: 80, content: { text: 'Согласен с условиями', checked: false, name: '' }, styles: { color: '#c3cad8', fontSize: '14px' } },
+    radio: { w: 240, h: 120, x: 80, y: 80, content: { options: ['Вариант A', 'Вариант B', 'Вариант C'], selected: 0, name: '' }, styles: { color: '#c3cad8', fontSize: '14px' } },
+    toggle: { w: 62, h: 32, x: 80, y: 80, content: { on: true, name: '' }, styles: { cursor: 'pointer' } },
+    range: { w: 320, h: 30, x: 80, y: 80, content: { value: 60, min: 0, max: 100, step: 1, name: '' }, styles: {} },
+    date: { w: 260, h: 46, x: 80, y: 80, content: { value: '', name: '', required: false }, styles: { background: '#0f1218', border: '1px solid #2c3342', borderRadius: '8px', color: '#e7eaf1' } },
+    file: { w: 300, h: 60, x: 80, y: 80, content: { text: 'Выбрать файл', accept: '', name: '' }, styles: { border: '2px dashed #2c3342', borderRadius: '10px', color: '#8b93a7', textAlign: 'center', lineHeight: '56px', fontSize: '13px', cursor: 'pointer' } },
 
     card: { w: 340, h: 260, x: 80, y: 80, content: { title: 'Заголовок карточки', text: 'Небольшое описание содержимого карточки.' }, styles: { background: '#131821', border: '1px solid #232936', borderRadius: '16px', padding: '26px' } },
-    hero: { w: 1200, h: 440, x: 0, y: 0, content: { title: 'Заголовок Hero', text: 'Подзаголовок с описанием', btn: 'Начать' }, styles: { background: 'linear-gradient(135deg,#1b2440,#0f1218)', textAlign: 'center' } },
+    hero: { w: 1200, h: 440, x: 0, y: 0, content: { title: 'Заголовок Hero', text: 'Подзаголовок с описанием', btn: 'Начать', btnUrl: '#', showBtn: true }, styles: { background: 'linear-gradient(135deg,#1b2440,#0f1218)', textAlign: 'center' } },
 
     pricing: { w: 1100, h: 460, x: 50, y: 80, content: { plans: [
       { name: 'Старт', price: '0₽', features: 'Базовые функции\n1 проект\nПомощь сообщества', btn: 'Начать', btnUrl: '#', hot: false },
@@ -1641,7 +1721,7 @@ function makeEl(type, x, y) {
 
     timeline: { w: 600, h: 240, x: 80, y: 80, content: { items: ['2021 — Основание', '2023 — 1000 клиентов', '2025 — Международный запуск'] }, styles: {} },
     steps: { w: 800, h: 120, x: 100, y: 80, content: { items: ['Регистрация', 'Настройка', 'Запуск'] }, styles: {} },
-    avatar: { w: 72, h: 72, x: 80, y: 80, content: { src: '' }, styles: { borderRadius: '50%' } },
+    avatar: { w: 72, h: 72, x: 80, y: 80, content: { src: '', char: 'A' }, styles: { borderRadius: '50%' } },
 
     social: { w: 260, h: 44, x: 80, y: 80, content: { items: [
       { net: 'twitter', url: 'https://twitter.com' },
@@ -1654,9 +1734,7 @@ function makeEl(type, x, y) {
     'js-raw': { w: 600, h: 120, x: 80, y: 80, content: { code: "console.log('Привет из SITER');" }, styles: {} },
     cookie: { w: 460, h: 90, x: 80, y: 80, content: { text: 'Мы используем cookies для работы сайта.', btnText: 'Принять' }, styles: { background: '#131821', border: '1px solid #232936', borderRadius: '12px' } },
     backtop: { w: 48, h: 48, x: 80, y: 80, content: { text: '↑' }, styles: { background: '#4f7cff', borderRadius: '12px', color: '#fff', fontSize: '20px', cursor: 'pointer' } },
-    loader: { w: 48, h: 48, x: 80, y: 80, content: {}, styles: { border: '3px solid #2c3342', borderTopColor: '#4f7cff', borderRadius: '50%' } },
-    particles: { w: 600, h: 240, x: 80, y: 80, content: {}, styles: { background: 'radial-gradient(circle at 30% 30%,#4f7cff33,transparent 60%),radial-gradient(circle at 70% 70%,#a06bff33,transparent 60%)', borderRadius: '14px' } },
-    scrollbar: { w: 1200, h: 4, x: 0, y: 0, content: {}, styles: { background: 'linear-gradient(90deg,#4f7cff,#a06bff)' } }
+    scrollbar: { w: 1200, h: 4, x: 0, y: 0, content: {}, styles: { background: '#1a1f2a' } }
   };
 
   const d = D[type] || {};
@@ -1692,6 +1770,7 @@ function renderSocialIcon(net) {
 
 /* ============================================================
    renderInner — содержимое элемента
+   (ВСЁ РАБОТАЕТ, без inline onclick, обработка через делегирование)
    ============================================================ */
 function renderInner(el) {
   const c = el.content || {};
@@ -1699,11 +1778,13 @@ function renderInner(el) {
   const t = el.type;
   const txt = k => esc(c[k] || '').replace(/\n/g, '<br/>');
   const txtRaw = k => String(c[k] || '').replace(/\n/g, '<br/>');
+  const nl2br = str => esc(str || '').replace(/\n/g, '<br/>');
 
   switch (t) {
     case 'section': case 'container': case 'columns': case 'grid': case 'spacer': case 'divider':
       return '';
 
+    /* --- Текст --- */
     case 'h1': case 'h2': case 'h3': case 'label': case 'link':
       return `<span class="tx">${txtRaw('text') || 'Текст'}</span>`;
     case 'paragraph': case 'blockquote':
@@ -1713,25 +1794,30 @@ function renderInner(el) {
     case 'list-ul':
       return `<ul style="margin:0;padding-left:22px;list-style:disc">${(c.items || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>`;
 
-    /* медиа */
+    /* --- Медиа --- */
     case 'image':
       return c.src
-        ? `<img src="${esc(c.src)}" alt="${esc(el.attrs.alt || '')}" style="width:100%;height:100%;object-fit:${esc(s.objectFit || 'cover')};display:block;border-radius:inherit"/>`
+        ? `<img src="${esc(c.src)}" alt="${esc(el.attrs.alt || c.alt || '')}" style="width:100%;height:100%;object-fit:${esc(s.objectFit || 'cover')};display:block;border-radius:inherit"/>`
         : `<div class="el-ph">🖼 Изображение — задай URL или загрузи в Медиа</div>`;
-    case 'video':
-      return c.src
-        ? `<video src="${esc(c.src)}" controls muted style="width:100%;height:100%;border-radius:inherit;background:#000;display:block"></video>`
-        : `<div class="el-ph">▶ Укажи ссылку на видео в свойствах</div>`;
+    case 'video': {
+      if (!c.src) return `<div class="el-ph">▶ Укажи ссылку на видео в свойствах</div>`;
+      const attrs = [];
+      if (c.controls !== false) attrs.push('controls');
+      if (c.muted) attrs.push('muted');
+      if (c.loop) attrs.push('loop');
+      if (c.autoplay) attrs.push('autoplay');
+      return `<video src="${esc(c.src)}" ${attrs.join(' ')} playsinline style="width:100%;height:100%;border-radius:inherit;background:#000;display:block;object-fit:cover"></video>`;
+    }
     case 'youtube':
       return c.id
         ? `<iframe src="https://www.youtube.com/embed/${esc(c.id)}" style="width:100%;height:100%;border:0;border-radius:inherit" allowfullscreen></iframe>`
         : `<div class="el-ph">📺 Укажи YouTube Video ID</div>`;
     case 'audio':
       return c.src
-        ? `<audio src="${esc(c.src)}" controls style="width:100%"></audio>`
+        ? `<audio src="${esc(c.src)}" ${c.controls !== false ? 'controls' : ''} style="width:100%"></audio>`
         : `<div class="el-ph">♪ Аудио — задай URL</div>`;
     case 'icon':
-      return `<span style="display:block;line-height:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center">${esc(c.char || '★')}</span>`;
+      return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">${esc(c.char || '★')}</span>`;
     case 'iframe':
       return c.src
         ? `<iframe src="${esc(c.src)}" style="width:100%;height:100%;border:0;border-radius:inherit"></iframe>`
@@ -1747,81 +1833,96 @@ function renderInner(el) {
       }</div>`;
     }
 
-    /* интерактив */
+    /* --- Интерактив --- */
     case 'button':
-      return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">${txtRaw('text')}</span>`;
-    case 'badge':
-    case 'toast-el':
-      return `<span style="display:flex;align-items:center;height:100%">${txtRaw('text')}</span>`;
-    case 'tooltip':
-      return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">${txtRaw('text')}</span>`;
+      return `<button type="button" style="width:100%;height:100%;background:transparent;border:none;color:inherit;font:inherit;cursor:pointer;font-weight:inherit;padding:0">${esc(c.text || 'Кнопка')}</button>`;
 
+    case 'badge':
+      return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">${esc(c.text || '')}</span>`;
+
+    case 'tooltip':
+      return `<div class="siter-tooltip"><span>${esc(c.text || 'Наведи на меня')}</span><div class="siter-tooltip__tip">${esc(c.tip || 'Подсказка')}</div></div>`;
+
+    /* --- Modal --- */
     case 'modal': {
-      return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">${esc(c.text || 'Открыть')}</span>`;
+      return `<button type="button" style="width:100%;height:100%;background:transparent;border:none;color:inherit;font:inherit;cursor:pointer;font-weight:600;padding:0">${esc(c.text || 'Открыть')}</button>`;
     }
 
+    /* --- Dropdown --- */
     case 'dropdown': {
       const items = c.items || [];
       return `<div class="siter-dd">
-        <button class="siter-dd__btn" type="button" onclick="event.stopPropagation();this.closest('.siter-dd').classList.toggle('open')">
-          <span>${txtRaw('text')}</span>
+        <button class="siter-dd__btn" type="button">
+          <span>${esc(c.text || 'Выберите…')}</span>
           <span class="siter-dd__arrow">▾</span>
         </button>
         <div class="siter-dd__menu">
-          ${items.map(i => `<a href="${esc(i.url || '#')}" onclick="event.stopPropagation()">${esc(i.label || '')}</a>`).join('')}
+          ${items.length ? items.map(i => `<a href="${esc(i.url || '#')}" data-dd-link>${esc(i.label || '')}</a>`).join('') : '<div style="padding:8px 12px;color:#5a6275;font-size:12px">Нет пунктов</div>'}
         </div>
       </div>`;
     }
 
+    /* --- Tabs --- */
     case 'tabs': {
       const items = c.items || [];
+      if (!items.length) return '<div class="el-ph">Табы: добавь вкладки в свойствах</div>';
       return `<div class="siter-tabs">
         <div class="siter-tabs__nav">
-          ${items.map((it, i) => `<button type="button" class="${i === 0 ? 'on' : ''}" data-tab-i="${i}" onclick="event.stopPropagation();siterTabs(this)">${esc(it.label || '')}</button>`).join('')}
+          ${items.map((it, i) => `<button type="button" class="${i === 0 ? 'on' : ''}" data-tab-i="${i}">${esc(it.label || 'Таб')}</button>`).join('')}
         </div>
         <div class="siter-tabs__body">
-          ${items.map((it, i) => `<div class="siter-tabs__pane ${i === 0 ? 'on' : ''}">${esc(it.body || '').replace(/\n/g, '<br/>')}</div>`).join('')}
+          ${items.map((it, i) => `<div class="siter-tabs__pane ${i === 0 ? 'on' : ''}">${nl2br(it.body || '')}</div>`).join('')}
         </div>
       </div>`;
     }
 
-    case 'accordion':
-    case 'faq': {
+    /* --- Accordion --- */
+    case 'accordion': {
       const items = c.items || [];
-      if (t === 'accordion') {
-        return `<div class="siter-acc">${items.map(it => `<div class="siter-acc__item">
-          <button type="button" class="siter-acc__head" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">${esc(it.title || '')}</button>
-          <div class="siter-acc__body">${esc(it.body || '').replace(/\n/g, '<br/>')}</div>
-        </div>`).join('')}</div>`;
-      }
-      return `<div class="siter-faq">${items.map(it => `<div class="siter-faq__item">
-        <button type="button" class="siter-faq__q" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">${esc(it.title || '')}</button>
-        <div class="siter-faq__a">${esc(it.body || '').replace(/\n/g, '<br/>')}</div>
+      if (!items.length) return '<div class="el-ph">Аккордеон: добавь пункты в свойствах</div>';
+      return `<div class="siter-acc">${items.map((it, i) => `<div class="siter-acc__item${(c.firstOpen && i === 0) ? ' open' : ''}">
+        <button type="button" class="siter-acc__head" data-acc-head>${esc(it.title || '')}</button>
+        <div class="siter-acc__body">${nl2br(it.body || '')}</div>
       </div>`).join('')}</div>`;
     }
 
+    /* --- FAQ --- */
+    case 'faq': {
+      const items = c.items || [];
+      if (!items.length) return '<div class="el-ph">FAQ: добавь вопросы в свойствах</div>';
+      return `<div class="siter-faq">${items.map(it => `<div class="siter-faq__item">
+        <button type="button" class="siter-faq__q" data-faq-head>${esc(it.title || '')}</button>
+        <div class="siter-faq__a">${nl2br(it.body || '')}</div>
+      </div>`).join('')}</div>`;
+    }
+
+    /* --- Progress --- */
     case 'progress':
       return `<div class="siter-progress" data-siter-animate="progress" data-value="${clamp(num(c.value), 0, 100)}"><div class="siter-progress__bar"></div></div>`;
 
+    /* --- Counter --- */
     case 'counter':
       return `<div class="siter-counter" data-siter-animate="counter" data-target="${num(c.value)}" data-dur="${num(c.duration) || 1400}" data-suffix="${esc(c.suffix || '')}">
         <div class="siter-counter__val">0</div>
         <div class="siter-counter__label">${esc(c.label || '')}</div>
       </div>`;
 
+    /* --- Rating --- */
     case 'rating': {
       const v = clamp(num(c.value), 0, 5);
-      return `<div class="siter-rating">${Array.from({ length: 5 }, (_, i) => `<span class="${i < v ? 'on' : ''}">★</span>`).join('')}</div>`;
+      return `<div class="siter-rating" data-siter-rating data-interactive="${c.interactive !== false}">${Array.from({ length: 5 }, (_, i) => `<span class="${i < v ? 'on' : ''}" data-star="${i + 1}">★</span>`).join('')}</div>`;
     }
 
+    /* --- Form --- */
     case 'form': {
       const fields = c.fields || [];
       const fieldHtml = fields.map(f => {
-        if (f.type === 'textarea') return `<textarea placeholder="${esc(f.placeholder || '')}" ${f.required ? 'required' : ''}></textarea>`;
-        if (f.type === 'select') return `<select ${f.required ? 'required' : ''}>${(f.options || ['Опция 1', 'Опция 2']).map(o => `<option>${esc(o)}</option>`).join('')}</select>`;
-        return `<input type="${esc(f.type || 'text')}" placeholder="${esc(f.placeholder || '')}" ${f.required ? 'required' : ''}/>`;
+        if (f.type === 'textarea') return `<textarea name="${esc(f.name || '')}" placeholder="${esc(f.placeholder || '')}" ${f.required ? 'required' : ''}></textarea>`;
+        if (f.type === 'select') return `<select name="${esc(f.name || '')}" ${f.required ? 'required' : ''}>${(f.options || ['Опция 1', 'Опция 2']).map(o => `<option>${esc(o)}</option>`).join('')}</select>`;
+        if (f.type === 'checkbox') return `<label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#c3cad8;cursor:pointer"><input type="checkbox" name="${esc(f.name || '')}" style="width:auto"/>${esc(f.placeholder || 'Согласен')}</label>`;
+        return `<input type="${esc(f.type || 'text')}" name="${esc(f.name || '')}" placeholder="${esc(f.placeholder || '')}" ${f.required ? 'required' : ''}/>`;
       }).join('');
-      return `<form class="siter-form" data-siter-form data-action="${esc(c.action || '')}">
+      return `<form class="siter-form" data-siter-form data-action="${esc(c.action || '')}" data-success="${esc(c.successText || 'Спасибо! Заявка отправлена.')}">
         ${c.title ? `<div class="siter-form__title">${esc(c.title)}</div>` : ''}
         ${fieldHtml}
         <button type="submit" class="siter-form__btn">${esc(c.submitText || 'Отправить')}</button>
@@ -1829,30 +1930,69 @@ function renderInner(el) {
       </form>`;
     }
 
-    case 'input-text': case 'input-email': case 'input-pass': case 'date': case 'textarea':
-      return `<span style="opacity:.55">${esc(c.placeholder || c.value || '')}</span>`;
-    case 'select':
-      return `<span style="flex:1;opacity:.8">${esc((c.options || [])[0] || '')}</span><span style="opacity:.6">▾</span>`;
-    case 'checkbox':
-      return `<span style="display:inline-flex;align-items:center;gap:10px;height:100%"><span style="width:18px;height:18px;border-radius:5px;background:#4f7cff;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0">✓</span>${esc(c.text || '')}</span>`;
-    case 'radio':
-      return `<span style="display:inline-flex;align-items:center;gap:10px;height:100%"><span style="width:18px;height:18px;border-radius:50%;border:5px solid #4f7cff;display:inline-block;flex-shrink:0;box-sizing:border-box"></span>${esc(c.text || '')}</span>`;
-    case 'toggle':
-      return `<div style="width:100%;height:100%;border-radius:100px;background:${c.on === false ? '#2c3342' : '#4f7cff'};position:relative;transition:.2s"><div style="position:absolute;top:4px;${c.on === false ? 'left:4px' : 'right:4px'};width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:.2s"></div></div>`;
-    case 'range':
-      return `<div style="position:relative;height:100%;display:flex;align-items:center"><div style="width:100%;height:5px;background:#2c3342;border-radius:100px"></div><div style="position:absolute;left:0;width:${clamp(num(c.value), 0, 100)}%;height:5px;background:#4f7cff;border-radius:100px"></div><div style="position:absolute;left:${clamp(num(c.value), 0, 100)}%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid #4f7cff;box-sizing:border-box"></div></div>`;
-    case 'file':
-      return `<span style="display:flex;align-items:center;justify-content:center;height:100%">📎 ${esc(c.text || 'Выбрать файл')}</span>`;
+    /* --- Inputs --- */
+    case 'input-text': case 'input-email': case 'input-pass': case 'input-tel': case 'input-number': {
+      const inputType = t === 'input-email' ? 'email' :
+                        t === 'input-pass' ? 'password' :
+                        t === 'input-tel' ? 'tel' :
+                        t === 'input-number' ? 'number' : 'text';
+      const extra = t === 'input-number'
+        ? `min="${escAttr(c.min || '')}" max="${escAttr(c.max || '')}" step="${escAttr(c.step || '')}"`
+        : '';
+      return `<input type="${inputType}" class="siter-input" placeholder="${esc(c.placeholder || '')}" value="${esc(c.value || '')}" name="${esc(c.name || '')}" ${c.required ? 'required' : ''} ${extra}/>`;
+    }
 
-    /* карточки и UI */
+    case 'textarea':
+      return `<textarea class="siter-textarea" placeholder="${esc(c.placeholder || '')}" name="${esc(c.name || '')}" ${c.required ? 'required' : ''}>${esc(c.value || '')}</textarea>`;
+
+    case 'select': {
+      const opts = c.options || [];
+      return `<select class="siter-select" name="${esc(c.name || '')}" ${c.required ? 'required' : ''}>
+        ${c.placeholder ? `<option value="">${esc(c.placeholder)}</option>` : ''}
+        ${opts.map(o => `<option>${esc(o)}</option>`).join('')}
+      </select>`;
+    }
+
+    case 'checkbox':
+      return `<label class="siter-checkbox"><input type="checkbox" name="${esc(c.name || '')}" ${c.checked ? 'checked' : ''}/>${esc(c.text || '')}</label>`;
+
+    case 'radio': {
+      const opts = c.options || ['Вариант 1'];
+      const groupName = c.name || ('radio-' + el.id);
+      return `<div class="siter-radio" data-siter-radio data-group="${escAttr(groupName)}">${opts.map((o, i) => `
+        <label><input type="radio" name="${esc(groupName)}" value="${esc(o)}" ${i === num(c.selected) ? 'checked' : ''}/>${esc(o)}</label>
+      `).join('')}</div>`;
+    }
+
+    case 'toggle':
+      return `<button type="button" class="siter-toggle${c.on !== false ? ' on' : ''}" data-siter-toggle data-name="${esc(c.name || '')}"></button>`;
+
+    case 'range': {
+      const min = c.min != null ? num(c.min) : 0;
+      const max = c.max != null ? num(c.max) : 100;
+      const step = c.step != null ? num(c.step) : 1;
+      const val = c.value != null ? num(c.value) : 50;
+      return `<div class="siter-range"><input type="range" min="${min}" max="${max}" step="${step}" value="${val}" name="${esc(c.name || '')}" data-siter-range/><span style="margin-left:10px;font-size:12px;color:#8b93a7;min-width:36px;text-align:right" data-siter-range-val>${val}</span></div>`;
+    }
+
+    case 'date':
+      return `<input type="date" class="siter-input" value="${esc(c.value || '')}" name="${esc(c.name || '')}" ${c.required ? 'required' : ''}/>`;
+
+    case 'file':
+      return `<label style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <input type="file" ${c.accept ? `accept="${escAttr(c.accept)}"` : ''} name="${esc(c.name || '')}" style="display:none"/>
+        <span>📎 ${esc(c.text || 'Выбрать файл')}</span>
+      </label>`;
+
+    /* --- Cards --- */
     case 'card':
-      return `<div style="display:flex;flex-direction:column;height:100%"><div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:10px">${esc(c.title || '')}</div><div style="font-size:13.5px;color:#8b93a7;line-height:1.65;flex:1">${esc(c.text || '')}</div></div>`;
+      return `<div style="display:flex;flex-direction:column;height:100%"><div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:10px">${esc(c.title || '')}</div><div style="font-size:13.5px;color:#8b93a7;line-height:1.65;flex:1">${nl2br(c.text || '')}</div></div>`;
 
     case 'hero':
       return `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:0 40px;box-sizing:border-box">
         <h1 style="font-size:56px;font-weight:900;color:#fff;letter-spacing:-2px;margin:0 0 16px;line-height:1.1;text-align:center">${esc(c.title || '')}</h1>
-        <p style="font-size:18px;color:#8b93a7;margin:0 0 30px;text-align:center">${esc(c.text || '')}</p>
-        <a href="#" onclick="return false" style="padding:14px 32px;background:#4f7cff;color:#fff;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none">${esc(c.btn || 'Начать')}</a>
+        <p style="font-size:18px;color:#8b93a7;margin:0 0 30px;text-align:center;max-width:600px">${esc(c.text || '')}</p>
+        ${c.showBtn !== false ? `<a href="${esc(c.btnUrl || '#')}" style="padding:14px 32px;background:#4f7cff;color:#fff;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none">${esc(c.btn || 'Начать')}</a>` : ''}
       </div>`;
 
     case 'pricing': {
@@ -1861,7 +2001,7 @@ function renderInner(el) {
         <div class="siter-pricing__item${p.hot ? ' siter-pricing__item--hot' : ''}">
           <div class="siter-pricing__name">${esc(p.name || '')}</div>
           <div class="siter-pricing__price">${esc(p.price || '')}</div>
-          <div class="siter-pricing__feat">${esc(p.features || '').replace(/\n/g, '<br/>')}</div>
+          <div class="siter-pricing__feat">${nl2br(p.features || '')}</div>
           <a href="${esc(p.btnUrl || '#')}" class="siter-pricing__btn" style="background:${p.hot ? '#4f7cff' : '#1a1f2a'}">${esc(p.btn || 'Выбрать')}</a>
         </div>`).join('')}</div>`;
     }
@@ -1912,7 +2052,7 @@ function renderInner(el) {
     case 'avatar':
       return c.src
         ? `<div class="siter-avatar" style="background-image:url(${esc(c.src)})"></div>`
-        : `<div class="siter-avatar">A</div>`;
+        : `<div class="siter-avatar">${esc(c.char || 'A')}</div>`;
 
     case 'social': {
       const items = c.items || [];
@@ -1924,7 +2064,7 @@ function renderInner(el) {
       return `<nav class="siter-navbar">
         <a href="#" class="siter-navbar__brand">${esc(c.brand || 'BRAND')}</a>
         <div class="siter-navbar__menu">${items.map(i => `<a href="${esc(i.url || '#')}">${esc(i.label || '')}</a>`).join('')}</div>
-        <button class="siter-navbar__toggle" type="button" onclick="event.stopPropagation();this.parentElement.classList.toggle('menu-open');this.nextElementSibling.classList.toggle('open')">☰</button>
+        <button class="siter-navbar__toggle" type="button" aria-label="Меню">☰</button>
       </nav>`;
     }
 
@@ -1933,14 +2073,15 @@ function renderInner(el) {
 
     case 'pagination': {
       const n = c.pages || 5;
-      return `<div class="siter-pagination">${Array.from({ length: n }, (_, i) => `<button type="button" class="${i === 0 ? 'on' : ''}">${i + 1}</button>`).join('')}</div>`;
+      const cur = num(c.current) || 1;
+      return `<div class="siter-pagination" data-siter-pagination>${Array.from({ length: n }, (_, i) => `<button type="button" class="${i + 1 === cur ? 'on' : ''}" data-page="${i + 1}">${i + 1}</button>`).join('')}</div>`;
     }
 
     case 'sidebar': {
       const items = c.items || [];
       return `<div class="siter-sidebar">
         <div class="siter-sidebar__logo">${esc(c.brand || 'LOGO')}</div>
-        ${items.map((i, k) => `<div class="siter-sidebar__item${k === 0 ? ' on' : ''}">${esc(i)}</div>`).join('')}
+        ${items.map((i, k) => `<button type="button" class="siter-sidebar__item${k === 0 ? ' on' : ''}">${esc(i)}</button>`).join('')}
       </div>`;
     }
 
@@ -1950,7 +2091,7 @@ function renderInner(el) {
     case 'html-raw':
       return `<div style="width:100%;height:100%;overflow:hidden">${c.code || ''}</div>`;
     case 'js-raw':
-      return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#5a6275;font-size:11px;font-family:monospace">JS-скрипт (${(c.code || '').length} симв.)</div>`;
+      return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#5a6275;font-size:11px;font-family:monospace;text-align:center;padding:10px">JS-скрипт (${(c.code || '').length} симв.)<br/><span style="opacity:.6">Выполнится в экспортированном сайте</span></div>`;
 
     case 'cookie':
       return `<div class="siter-cookie">
@@ -1960,17 +2101,10 @@ function renderInner(el) {
       </div>`;
 
     case 'backtop':
-      return `<button type="button" class="siter-backtop" data-siter-top onclick="event.stopPropagation();window.scrollTo({top:0,behavior:'smooth'})">↑</button>`;
-
-    case 'loader':
-      return `<div style="width:100%;height:100%;border-radius:50%;animation:siter-spin 1s linear infinite"></div>
-        <style>@keyframes siter-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}</style>`;
-
-    case 'particles':
-      return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#4f7cff88;font-size:14px;letter-spacing:20px">✦✦✦</div>`;
+      return `<button type="button" class="siter-backtop" data-siter-top>↑</button>`;
 
     case 'scrollbar':
-      return `<div class="siter-scrollbar" data-siter-scrollbar></div>`;
+      return `<div class="siter-scrollbar-wrap"><div class="siter-scrollbar-fill" data-siter-scrollbar></div></div>`;
 
     default:
       return `<div class="el-ph">${esc(t)}</div>`;
@@ -1983,7 +2117,8 @@ function renderInner(el) {
 function elementHTML(el, forEditor) {
   const st = el.styles || {};
   let css = `left:${el.x}px;top:${el.y}px;width:${el.w}px;height:${el.h}px;z-index:${el.z || 1};--mob-ord:${el.y * 100 + el.x};--mob-minh:${el.h}px;`;
-  if (el.hidden) css += 'display:none;';
+  if (el.hidden && !forEditor) css += 'display:none;';
+  if (el.hidden && forEditor) css += 'opacity:.25;';
   for (const [k, v] of Object.entries(st)) {
     if (v === '' || v === null || v === undefined) continue;
     css += `${kebab(k)}:${v};`;
@@ -2024,14 +2159,13 @@ function elementHTML(el, forEditor) {
     animCss = `@keyframes siter-anim-${el.id}{${frames}}.el[data-id="${el.id}"].siter-anim-in{animation:siter-anim-${el.id} ${a.duration || 600}ms ${a.easing || 'ease'} ${a.delay || 0}ms ${a.repeat > 1 ? a.repeat : 1} both;}`;
   }
 
-  /* данные о parallax/анимации */
   let dataAttrs = '';
   if (el.parallax) dataAttrs += ` data-parallax="${el.parallaxSpeed || 0.5}"`;
   if (el.anim && el.anim.enter && el.anim.enter !== 'none' && el.anim.trigger === 'scroll') {
     dataAttrs += ` data-siter-anim`;
   }
 
-  /* ссылка */
+  /* --- Ссылка/обёртка --- */
   let tag = 'div';
   let href = '';
   const lk = el.link || {};
@@ -2045,18 +2179,18 @@ function elementHTML(el, forEditor) {
     else if (lk.type === 'anchor' && lk.value) { tag = 'a'; href = '#' + lk.value; }
     else if (lk.type === 'email' && lk.value) { tag = 'a'; href = 'mailto:' + lk.value; }
     else if (lk.type === 'phone' && lk.value) { tag = 'a'; href = 'tel:' + lk.value.replace(/\s/g, ''); }
-    else if (lk.type === 'download' && lk.value) { tag = 'a'; href = lk.value; }
+    else if (lk.type === 'download' && lk.value) { tag = 'a'; href = lk.value; href = lk.value; }
   }
 
   const attrStr = [];
   if (el.attrs) {
     for (const [k, v] of Object.entries(el.attrs)) {
-      if (v) attrStr.push(`${k}="${esc(v)}"`);
+      if (v) attrStr.push(`${k}="${escAttr(v)}"`);
     }
   }
   if (tag === 'a' && href) {
-    attrStr.push(`href="${esc(href)}"`);
-    if (lk.target) attrStr.push(`target="${esc(lk.target)}"`);
+    attrStr.push(`href="${escAttr(href)}"`);
+    if (lk.target) attrStr.push(`target="${escAttr(lk.target)}"`);
     if (lk.target === '_blank') attrStr.push('rel="noopener"');
   }
 
@@ -2066,15 +2200,17 @@ function elementHTML(el, forEditor) {
     el.locked ? 'locked' : ''
   ].filter(Boolean).join(' ');
 
-  /* модалка — рендерим кнопку + модалку отдельно */
+  /* Модалка — кнопка + контент модалки отдельно */
   if (el.type === 'modal') {
     const modalId = 'siter-modal-' + el.id;
     const btnHtml = `<div class="${cls}" data-id="${el.id}" data-type="${el.type}" style="${css}" ${attrStr.join(' ')} data-siter-modal-btn data-modal-target="${modalId}">${inner}</div>`;
-    const modalHtml = `<div class="siter-modal" id="${modalId}" data-siter-modal-content onclick="if(event.target===this)this.classList.remove('open')">
-      <div class="siter-modal__box">
-        <button class="siter-modal__close" type="button" onclick="this.closest('.siter-modal').classList.remove('open')">✕</button>
+    const size = el.content.modalSize || 'md';
+    const maxW = size === 'sm' ? '380px' : size === 'lg' ? '720px' : size === 'xl' ? '960px' : '500px';
+    const modalHtml = `<div class="siter-modal" id="${modalId}" data-siter-modal-content>
+      <div class="siter-modal__box" style="max-width:${maxW}">
+        <button class="siter-modal__close" type="button" aria-label="Закрыть">✕</button>
         <div class="siter-modal__title">${esc(el.content.modalTitle || '')}</div>
-        <div class="siter-modal__body">${esc(el.content.modalBody || '').replace(/\n/g, '<br/>')}</div>
+        <div class="siter-modal__body">${nl2br(el.content.modalBody || '')}</div>
       </div>
     </div>`;
     return { html: btnHtml, modalHtml, extraCss: hoverCss + animCss };
@@ -2085,6 +2221,9 @@ function elementHTML(el, forEditor) {
     extraCss: hoverCss + animCss
   };
 }
+
+// хелпер: перенос строк
+function nl2br(str) { return esc(str || '').replace(/\n/g, '<br/>'); }
 
 /* ============================================================
    РЕНДЕР ХОЛСТА
@@ -2114,7 +2253,7 @@ function renderCanvas() {
     const tmp = document.createElement('div');
     tmp.innerHTML = r.html;
     const node = tmp.firstElementChild;
-    canvas.appendChild(node);
+    if (node) canvas.appendChild(node);
   }
 
   if (modalsHtml) {
@@ -2426,7 +2565,7 @@ function setupCanvasEvents() {
 }
 
 function isTextType(t) {
-  return ['h1', 'h2', 'h3', 'paragraph', 'blockquote', 'label', 'link', 'button', 'badge', 'tooltip', 'dropdown', 'toast-el', 'code'].includes(t);
+  return ['h1', 'h2', 'h3', 'paragraph', 'blockquote', 'label', 'link', 'button', 'badge', 'tooltip', 'dropdown', 'code'].includes(t);
 }
 
 function startDrag(e, el, node) {
@@ -2500,22 +2639,24 @@ function startResize(e, dir) {
 }
 
 function startTextEdit(node, el) {
-  node.setAttribute('contenteditable', 'true');
-  node.focus();
+  // находим contenteditable внутри .tx или самого узла
+  const target = node.querySelector('.tx') || node;
+  target.setAttribute('contenteditable', 'true');
+  target.focus();
   const r = document.createRange();
-  r.selectNodeContents(node);
+  r.selectNodeContents(target);
   const sel = window.getSelection();
   sel.removeAllRanges();
   sel.addRange(r);
   const finish = () => {
-    node.removeAttribute('contenteditable');
-    const text = node.innerText.trim();
+    target.removeAttribute('contenteditable');
+    const text = target.innerText.trim();
     if (el.type === 'code') el.content.text = text;
     else if (el.type !== 'list-ul') el.content.text = text;
-    node.removeEventListener('blur', finish);
+    target.removeEventListener('blur', finish);
     pushHistory(); renderCanvas();
   };
-  node.addEventListener('blur', finish);
+  target.addEventListener('blur', finish);
 }
 
 /* ============================================================
@@ -2543,7 +2684,7 @@ function tmenu(btn) {
 }
 
 /* ============================================================
-   ПРАВАЯ ПАНЕЛЬ
+   ПРАВАЯ ПАНЕЛЬ — переключение табов
    ============================================================ */
 function rightTab(t) {
   $$('.panel--r .ptab').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
@@ -2696,7 +2837,7 @@ function parseTransform(t) {
 }
 
 /* ============================================================
-   CONTENT BOX
+   ============  CONTENT BOX — РЕДАКТОРЫ КОНТЕНТА  ============
    ============================================================ */
 function renderContentBox(el) {
   const box = $('#contentBox');
@@ -2704,60 +2845,167 @@ function renderContentBox(el) {
   const t = el.type;
   let h = '';
 
+  const textArea = (key, label, rows = 4, ph = '') =>
+    `<div class="row col"><label class="w">${label}</label><textarea class="code-in" rows="${rows}" placeholder="${escAttr(ph)}" oninput="setContent('${key}',this.value)">${esc(c[key] || '')}</textarea></div>`;
+
+  const inputText = (key, label, ph = '') =>
+    `<div class="row col"><label class="w">${label}</label><input type="text" placeholder="${escAttr(ph)}" value="${esc(c[key] || '')}" oninput="setContent('${key}',this.value)"/></div>`;
+
   if (isTextType(t)) {
-    h = `<div class="row col"><label class="w">Текст</label><textarea class="code-in" rows="4" oninput="setContent('text',this.value)">${esc(c.text || '')}</textarea></div>`;
-  } else if (t === 'image' || t === 'avatar') {
-    h = `<div class="row col"><label class="w">URL изображения</label><input type="text" placeholder="https://…" value="${esc(c.src || '')}" oninput="setContent('src',this.value)"/></div>
-      <div class="row col"><label class="w">Object-fit</label><select onchange="setStyle('objectFit',this.value)">
-      <option value="cover" ${el.styles.objectFit === 'cover' ? 'selected' : ''}>Cover</option>
-      <option value="contain" ${el.styles.objectFit === 'contain' ? 'selected' : ''}>Contain</option>
-      <option value="fill" ${el.styles.objectFit === 'fill' ? 'selected' : ''}>Fill</option></select></div>`;
-  } else if (t === 'video' || t === 'audio') {
-    h = `<div class="row col"><label class="w">URL ${t === 'video' ? 'видео' : 'аудио'}</label><input type="text" placeholder="https://…" value="${esc(c.src || '')}" oninput="setContent('src',this.value)"/></div>`;
+    h = textArea('text', 'Текст', 4);
+  } else if (t === 'image') {
+    h = inputText('src', 'URL изображения', 'https://…') +
+        `<div class="row col"><label class="w">Alt-текст</label><input type="text" value="${esc(c.alt || '')}" oninput="setContent('alt',this.value)"/></div>` +
+        `<div class="row"><label>Object-fit</label><select onchange="setStyle('objectFit',this.value)">
+          <option value="cover" ${el.styles.objectFit === 'cover' ? 'selected' : ''}>Cover</option>
+          <option value="contain" ${el.styles.objectFit === 'contain' ? 'selected' : ''}>Contain</option>
+          <option value="fill" ${el.styles.objectFit === 'fill' ? 'selected' : ''}>Fill</option></select></div>`;
+  } else if (t === 'avatar') {
+    h = inputText('src', 'URL аватара', 'https://…') +
+        inputText('char', 'Символ (если нет картинки)', 'A');
+  } else if (t === 'video') {
+    h = inputText('src', 'URL видео', 'https://…') +
+        `<div class="g2">
+          <label class="net-chk"><input type="checkbox" ${c.controls !== false ? 'checked' : ''} onchange="setContent('controls',this.checked)"/>Controls</label>
+          <label class="net-chk"><input type="checkbox" ${c.muted ? 'checked' : ''} onchange="setContent('muted',this.checked)"/>Muted</label>
+          <label class="net-chk"><input type="checkbox" ${c.loop ? 'checked' : ''} onchange="setContent('loop',this.checked)"/>Loop</label>
+          <label class="net-chk"><input type="checkbox" ${c.autoplay ? 'checked' : ''} onchange="setContent('autoplay',this.checked)"/>Autoplay</label>
+        </div>`;
+  } else if (t === 'audio') {
+    h = inputText('src', 'URL аудио', 'https://…');
   } else if (t === 'youtube') {
-    h = `<div class="row col"><label class="w">YouTube Video ID</label><input type="text" placeholder="dQw4w9WgXcQ" value="${esc(c.id || '')}" oninput="setContent('id',this.value)"/></div>`;
+    h = inputText('id', 'YouTube Video ID', 'dQw4w9WgXcQ') +
+        `<div class="rep-hint">Например для https://youtube.com/watch?v=dQw4w9WgXcQ введи <b>dQw4w9WgXcQ</b></div>`;
   } else if (t === 'iframe') {
-    h = `<div class="row col"><label class="w">URL для iframe</label><input type="text" placeholder="https://…" value="${esc(c.src || '')}" oninput="setContent('src',this.value)"/></div>`;
+    h = inputText('src', 'URL для iframe', 'https://…');
   } else if (t === 'map') {
-    h = `<div class="row col"><label class="w">URL встраиваемой карты</label><input type="text" placeholder="https://www.google.com/maps/embed?pb=…" value="${esc(c.src || '')}" oninput="setContent('src',this.value)"/></div>
-      <div style="font-size:11px;color:var(--mute);padding:8px 0;line-height:1.7"><b style="color:var(--accent-2)">Google Maps:</b> Поделиться → Встроить карту → src из iframe</div>`;
+    h = inputText('src', 'URL встраиваемой карты', 'https://www.google.com/maps/embed?pb=…') +
+        `<div class="rep-hint"><b style="color:var(--accent-2)">Google Maps:</b> Поделиться → Встроить карту → скопируй src из iframe</div>`;
   } else if (t === 'html-raw' || t === 'js-raw') {
-    h = `<div class="row col"><label class="w">${t === 'html-raw' ? 'HTML-код' : 'JavaScript-код'}</label><textarea class="code-in" rows="8" oninput="setContent('code',this.value)">${esc(c.code || '')}</textarea></div>`;
+    h = textArea('code', t === 'html-raw' ? 'HTML-код' : 'JavaScript-код', 8);
   } else if (t === 'list-ul' || t === 'timeline' || t === 'steps' || t === 'breadcrumb' || t === 'sidebar') {
-    h = `<div class="row col"><label class="w">Пункты (по одному на строку)</label><textarea class="code-in" rows="5" oninput="setItems(this.value)">${esc((c.items || []).join('\n'))}</textarea></div>`;
-    if (t === 'sidebar') h += `<div class="row col"><label class="w">Бренд</label><input type="text" value="${esc(c.brand || '')}" oninput="setContent('brand',this.value)"/></div>`;
+    h = renderRepeater('list-' + t, c.items || [], [
+      { key: '__str', type: 'text', placeholder: 'Пункт', label: 'Текст' }
+    ], (items) => {
+      const newItems = items.map(i => i.__str);
+      setContent('items', newItems);
+    });
+    if (t === 'sidebar') h += inputText('brand', 'Бренд');
   } else if (t === 'select') {
-    h = `<div class="row col"><label class="w">Опции (по одной на строку)</label><textarea class="code-in" rows="4" oninput="setContent('options',this.value.split('\\n'))">${esc((c.options || []).join('\n'))}</textarea></div>`;
+    h = renderRepeater('select-opts', (c.options || []).map(o => ({ __str: o })), [
+      { key: '__str', type: 'text', placeholder: 'Опция', label: 'Вариант' }
+    ], (items) => setContent('options', items.map(i => i.__str))) +
+      inputText('placeholder', 'Placeholder (первая опция)', 'Выберите…') +
+      inputText('name', 'name атрибут', '') +
+      `<div class="row"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" ${c.required ? 'checked' : ''} onchange="setContent('required',this.checked)"/>Обязательное поле</label></div>`;
   } else if (t === 'progress') {
-    h = `<div class="row"><label>Значение (0-100)</label><input type="number" min="0" max="100" value="${num(c.value)}" oninput="setContent('value',+this.value)"/></div>`;
+    h = `<div class="row col"><label class="w">Значение — <b id="prVal">${num(c.value)}</b>%</label>
+      <input type="range" min="0" max="100" value="${num(c.value)}" oninput="document.getElementById('prVal').textContent=this.value;setContent('value',+this.value)"/></div>`;
   } else if (t === 'rating') {
-    h = `<div class="row"><label>Значение (0-5)</label><input type="number" min="0" max="5" value="${num(c.value)}" oninput="setContent('value',+this.value)"/></div>`;
+    h = `<div class="row"><label>Значение (0-5)</label><input type="number" min="0" max="5" value="${num(c.value)}" oninput="setContent('value',+this.value)"/></div>
+      <div class="row"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" ${c.interactive !== false ? 'checked' : ''} onchange="setContent('interactive',this.checked)"/>Интерактивный (клик меняет рейтинг)</label></div>`;
   } else if (t === 'counter') {
     h = `<div class="row"><label>Значение</label><input type="number" value="${num(c.value)}" oninput="setContent('value',+this.value)"/></div>
-      <div class="row col"><label class="w">Подпись</label><input type="text" value="${esc(c.label || '')}" oninput="setContent('label',this.value)"/></div>
-      <div class="row"><label>Длит. мс</label><input type="number" value="${num(c.duration) || 1400}" oninput="setContent('duration',+this.value)"/></div>
-      <div class="row col"><label class="w">Суффикс</label><input type="text" placeholder="+ / K / %" value="${esc(c.suffix || '')}" oninput="setContent('suffix',this.value)"/></div>`;
+      ${inputText('label', 'Подпись')}
+      <div class="row"><label>Длительность (мс)</label><input type="number" value="${num(c.duration) || 1400}" oninput="setContent('duration',+this.value)"/></div>
+      ${inputText('suffix', 'Суффикс (K, +, %)')}`;
   } else if (t === 'toggle') {
-    h = `<div class="row"><label>Включён</label><input type="checkbox" ${c.on !== false ? 'checked' : ''} onchange="setContent('on',this.checked)"/></div>`;
+    h = `<div class="row"><label>Включён</label><input type="checkbox" ${c.on !== false ? 'checked' : ''} onchange="setContent('on',this.checked)"/></div>
+        ${inputText('name', 'name атрибут', '')}`;
   } else if (t === 'gallery') {
     h = `<div class="row"><label>Кол-во фото</label><input type="number" min="1" max="8" value="${c.count || 4}" oninput="setContent('count',+this.value)"/></div>`;
   } else if (t === 'icon') {
-    h = `<div class="row col"><label class="w">Символ / эмодзи</label><input type="text" value="${esc(c.char || '')}" oninput="setContent('char',this.value)"/></div>`;
-  } else if (['input-text', 'input-email', 'input-pass', 'textarea', 'date'].includes(t)) {
-    h = `<div class="row col"><label class="w">Placeholder</label><input type="text" value="${esc(c.placeholder || '')}" oninput="setContent('placeholder',this.value)"/></div>`;
-  } else if (['checkbox', 'radio', 'file', 'toast-el', 'button', 'link', 'badge', 'tooltip', 'label', 'footer', 'backtop'].includes(t)) {
-    h = `<div class="row col"><label class="w">Текст</label><textarea class="code-in" rows="3" oninput="setContent('text',this.value)">${esc(c.text || '')}</textarea></div>`;
-  } else if (t === 'pagination') {
-    h = `<div class="row"><label>Кол-во страниц</label><input type="number" min="1" max="12" value="${c.pages || 5}" oninput="setContent('pages',+this.value)"/></div>`;
-
-  /* --- DROPDOWN --- */
+    h = inputText('char', 'Символ / эмодзи', '★');
+  } else if (t === 'input-text' || t === 'input-email' || t === 'input-pass' || t === 'input-tel' || t === 'input-number' || t === 'textarea' || t === 'date') {
+    h = inputText('placeholder', 'Placeholder', 'Введите…') +
+        inputText('value', 'Значение по умолчанию') +
+        inputText('name', 'name атрибут', '') +
+        `<div class="row"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" ${c.required ? 'checked' : ''} onchange="setContent('required',this.checked)"/>Обязательное</label></div>`;
+    if (t === 'input-number') {
+      h += `<div class="g3"><div class="fld"><label>min</label><input type="number" value="${escAttr(c.min || '')}" oninput="setContent('min',this.value)"/></div>
+        <div class="fld"><label>max</label><input type="number" value="${escAttr(c.max || '')}" oninput="setContent('max',this.value)"/></div>
+        <div class="fld"><label>step</label><input type="number" value="${escAttr(c.step || '')}" oninput="setContent('step',this.value)"/></div></div>`;
+    }
+  } else if (t === 'checkbox') {
+    h = inputText('text', 'Текст рядом') +
+        inputText('name', 'name атрибут', '') +
+        `<div class="row"><label>По умолчанию</label><input type="checkbox" ${c.checked ? 'checked' : ''} onchange="setContent('checked',this.checked)"/></div>`;
+  } else if (t === 'radio') {
+    h = renderRepeater('radio-opts', (c.options || []).map(o => ({ __str: o })), [
+      { key: '__str', type: 'text', placeholder: 'Вариант', label: 'Значение' }
+    ], (items) => setContent('options', items.map(i => i.__str))) +
+      inputText('name', 'name группы', '') +
+      `<div class="row"><label>Выбран по умолчанию</label>
+        <select onchange="setContent('selected',+this.value)">
+          ${(c.options || []).map((o, i) => `<option value="${i}" ${num(c.selected) === i ? 'selected' : ''}>${esc(o)}</option>`).join('')}
+        </select></div>`;
+  } else if (t === 'range') {
+    h = `<div class="g3" style="margin-bottom:8px">
+        <div class="fld"><label>min</label><input type="number" value="${num(c.min) || 0}" oninput="setContent('min',+this.value)"/></div>
+        <div class="fld"><label>max</label><input type="number" value="${num(c.max) || 100}" oninput="setContent('max',+this.value)"/></div>
+        <div class="fld"><label>step</label><input type="number" value="${num(c.step) || 1}" oninput="setContent('step',+this.value)"/></div>
+      </div>
+      <div class="row"><label>Значение</label><input type="number" value="${num(c.value)}" oninput="setContent('value',+this.value)"/></div>
+      ${inputText('name', 'name атрибут', '')}`;
+  } else if (t === 'file') {
+    h = inputText('text', 'Текст кнопки') +
+        inputText('accept', 'Принимаемые типы', 'image/*, .pdf') +
+        inputText('name', 'name атрибут', '');
+  } else if (t === 'button') {
+    h = textArea('text', 'Текст кнопки', 2);
+  } else if (t === 'badge' || t === 'footer' || t === 'backtop') {
+    h = textArea('text', 'Текст', 3);
+  } else if (t === 'link') {
+    h = textArea('text', 'Текст ссылки', 2);
+  } else if (t === 'label') {
+    h = textArea('text', 'Текст метки', 2);
+  } else if (t === 'tooltip') {
+    h = inputText('text', 'Видимый текст') + inputText('tip', 'Текст подсказки', 'Подсказка');
   } else if (t === 'dropdown') {
-    const items = (c.items || []).map(i => `${i.label || ''} | ${i.url || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Текст кнопки</label><input type="text" value="${esc(c.text || '')}" oninput="setContent('text',this.value)"/></div>
-      <div class="row col"><label class="w">Опции (Label | URL)</label><textarea class="code-in" rows="5" oninput="setDropdownItems(this.value)">${esc(items)}</textarea></div>
-      <div style="font-size:11px;color:var(--mute);padding:6px 0">Например: Наш блог | /blog.html</div>`;
-
-  /* --- SOCIAL --- */
+    h = inputText('text', 'Текст на кнопке', 'Выберите…') +
+        renderRepeater('dd-items', c.items || [], [
+          { key: 'label', type: 'text', placeholder: 'Название пункта', label: 'Label' },
+          { key: 'url', type: 'text', placeholder: 'https://… или #anchor', label: 'URL' }
+        ], (items) => setContent('items', items)) +
+        `<div class="rep-hint">💡 Каждый пункт — своя ссылка. Если URL = "#", то пункт не переходит.</div>`;
+  } else if (t === 'tabs') {
+    h = renderRepeater('tabs-items', c.items || [], [
+      { key: 'label', type: 'text', placeholder: 'Заголовок вкладки', label: 'Заголовок' },
+      { key: 'body', type: 'textarea', placeholder: 'Содержимое вкладки…', label: 'Содержимое' }
+    ], (items) => setContent('items', items));
+  } else if (t === 'accordion') {
+    h = renderRepeater('acc-items', c.items || [], [
+      { key: 'title', type: 'text', placeholder: 'Заголовок', label: 'Заголовок' },
+      { key: 'body', type: 'textarea', placeholder: 'Содержимое…', label: 'Содержимое' }
+    ], (items) => setContent('items', items)) +
+      `<div class="row"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" ${c.firstOpen ? 'checked' : ''} onchange="setContent('firstOpen',this.checked)"/>Первый открыт по умолчанию</label></div>`;
+  } else if (t === 'faq') {
+    h = renderRepeater('faq-items', c.items || [], [
+      { key: 'title', type: 'text', placeholder: 'Вопрос', label: 'Вопрос' },
+      { key: 'body', type: 'textarea', placeholder: 'Ответ…', label: 'Ответ' }
+    ], (items) => setContent('items', items));
+  } else if (t === 'navbar') {
+    h = inputText('brand', 'Бренд') +
+        renderRepeater('nav-items', c.items || [], [
+          { key: 'label', type: 'text', placeholder: 'Название', label: 'Пункт' },
+          { key: 'url', type: 'text', placeholder: 'index.html', label: 'URL' }
+        ], (items) => setContent('items', items));
+  } else if (t === 'pagination') {
+    h = `<div class="g2">
+        <div class="fld"><label>Всего страниц</label><input type="number" min="1" max="12" value="${c.pages || 5}" oninput="setContent('pages',+this.value)"/></div>
+        <div class="fld"><label>Активная</label><input type="number" min="1" value="${c.current || 1}" oninput="setContent('current',+this.value)"/></div>
+      </div>`;
+  } else if (t === 'modal') {
+    h = inputText('text', 'Текст кнопки') +
+        inputText('modalTitle', 'Заголовок модалки') +
+        textArea('modalBody', 'Содержимое', 5) +
+        `<div class="row"><label>Размер</label>
+          <select onchange="setContent('modalSize',this.value)">
+            <option value="sm" ${c.modalSize === 'sm' ? 'selected' : ''}>Маленький</option>
+            <option value="md" ${c.modalSize === 'md' || !c.modalSize ? 'selected' : ''}>Средний</option>
+            <option value="lg" ${c.modalSize === 'lg' ? 'selected' : ''}>Большой</option>
+            <option value="xl" ${c.modalSize === 'xl' ? 'selected' : ''}>Очень большой</option>
+          </select></div>`;
   } else if (t === 'social') {
     const cur = c.items || [];
     const curMap = {};
@@ -2766,80 +3014,171 @@ function renderContentBox(el) {
       <div class="net-grid">${Object.keys(SOCIAL_NETS).map(net => `
         <label class="net-chk"><input type="checkbox" ${curMap[net] !== undefined ? 'checked' : ''} onchange="toggleSocialNet('${net}',this.checked)"/>${esc(SOCIAL_NETS[net].name.split(' ')[0])}</label>
       `).join('')}</div>
-      <div id="socialUrls">${cur.map(i => `
-        <div class="row col net-url"><label class="w">${esc((SOCIAL_NETS[i.net] || {}).name || i.net)}</label>
+      ${cur.map(i => `<div class="row col"><label class="w">${esc((SOCIAL_NETS[i.net] || {}).name || i.net)}</label>
         <input type="text" value="${esc(i.url)}" placeholder="https://…" oninput="updateSocialUrl('${i.net}',this.value)"/>
-        </div>`).join('')}</div>`;
-
-  /* --- MODAL --- */
-  } else if (t === 'modal') {
-    h = `<div class="row col"><label class="w">Текст кнопки</label><input type="text" value="${esc(c.text || '')}" oninput="setContent('text',this.value)"/></div>
-      <div class="row col"><label class="w">Заголовок модалки</label><input type="text" value="${esc(c.modalTitle || '')}" oninput="setContent('modalTitle',this.value)"/></div>
-      <div class="row col"><label class="w">Содержимое модалки</label><textarea class="code-in" rows="5" oninput="setContent('modalBody',this.value)">${esc(c.modalBody || '')}</textarea></div>`;
-
-  /* --- TABS --- */
-  } else if (t === 'tabs') {
-    const items = (c.items || []).map(i => `${i.label || ''} :: ${i.body || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Вкладки (Заголовок :: Содержимое)</label><textarea class="code-in" rows="6" oninput="setDelimitedItems(this.value,'label','body')">${esc(items)}</textarea></div>`;
-
-  /* --- ACCORDION / FAQ --- */
-  } else if (t === 'accordion' || t === 'faq') {
-    const items = (c.items || []).map(i => `${i.title || ''} :: ${i.body || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Элементы (Заголовок :: Содержимое)</label><textarea class="code-in" rows="6" oninput="setDelimitedItems(this.value,'title','body')">${esc(items)}</textarea></div>`;
-
-  /* --- NAVBAR --- */
-  } else if (t === 'navbar') {
-    const items = (c.items || []).map(i => `${i.label || ''} | ${i.url || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Бренд</label><input type="text" value="${esc(c.brand || '')}" oninput="setContent('brand',this.value)"/></div>
-      <div class="row col"><label class="w">Пункты меню (Label | URL)</label><textarea class="code-in" rows="5" oninput="setNavItems(this.value)">${esc(items)}</textarea></div>`;
-
-  /* --- FORM --- */
+      </div>`).join('')}`;
   } else if (t === 'form') {
-    const fields = (c.fields || []).map(f => `${f.type || 'text'} | ${f.placeholder || ''} | ${f.required ? 'yes' : ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Заголовок</label><input type="text" value="${esc(c.title || '')}" oninput="setContent('title',this.value)"/></div>
-      <div class="row col"><label class="w">Текст кнопки</label><input type="text" value="${esc(c.submitText || '')}" oninput="setContent('submitText',this.value)"/></div>
-      <div class="row col"><label class="w">Action URL (опц.)</label><input type="text" placeholder="https://formspree.io/f/…" value="${esc(c.action || '')}" oninput="setContent('action',this.value)"/></div>
-      <div class="row col"><label class="w">Поля (type | placeholder | required)</label><textarea class="code-in" rows="6" oninput="setFormFields(this.value)">${esc(fields)}</textarea></div>
-      <div style="font-size:11px;color:var(--mute);padding:6px 0">Типы: text, email, tel, number, textarea, password. required — yes/пусто</div>`;
-
-  /* --- TABLE --- */
+    h = inputText('title', 'Заголовок формы') +
+        inputText('submitText', 'Текст кнопки', 'Отправить') +
+        inputText('successText', 'Сообщение после отправки', 'Спасибо! Заявка отправлена.') +
+        inputText('action', 'Action URL (куда отправлять)', 'https://formspree.io/f/…') +
+        renderRepeater('form-fields', c.fields || [], [
+          { key: 'type', type: 'select', options: ['text', 'email', 'tel', 'number', 'password', 'textarea', 'select', 'checkbox'], label: 'Тип' },
+          { key: 'placeholder', type: 'text', placeholder: 'Placeholder / подпись', label: 'Placeholder' },
+          { key: 'name', type: 'text', placeholder: 'name', label: 'name' },
+          { key: 'required', type: 'checkbox', label: 'Обязательное' }
+        ], (items) => setContent('fields', items)) +
+        `<div class="rep-hint">💡 Если указан Action URL — форма отправит данные методом POST на этот адрес (например Formspree).</div>`;
   } else if (t === 'table') {
-    h = `<div class="row col"><label class="w">Колонки (через запятую)</label><input type="text" value="${esc((c.cols || []).join(', '))}" oninput="setTableCols(this.value)"/></div>
-      <div class="row col"><label class="w">Строки (ячейки через «|», строки через Enter)</label><textarea class="code-in" rows="6" oninput="setTableRows(this.value)">${esc((c.rows || []).map(r => r.join(' | ')).join('\n'))}</textarea></div>`;
-
-  /* --- PRICING --- */
+    h = inputText('cols', 'Колонки через запятую') +
+        `<div class="row col"><label class="w">Строки (ячейки через |, строки через Enter)</label>
+          <textarea class="code-in" rows="6" oninput="setTableRows(this.value)">${esc((c.rows || []).map(r => r.join(' | ')).join('\n'))}</textarea></div>`;
+    // объединяем cols в тот же input
+    h = `<div class="row col"><label class="w">Колонки (через запятую)</label>
+          <input type="text" value="${esc((c.cols || []).join(', '))}" oninput="setTableCols(this.value)"/></div>` +
+        `<div class="row col"><label class="w">Строки (ячейки через «|», строки через Enter)</label>
+          <textarea class="code-in" rows="6" oninput="setTableRows(this.value)">${esc((c.rows || []).map(r => r.join(' | ')).join('\n'))}</textarea></div>`;
   } else if (t === 'pricing') {
-    const plans = (c.plans || []).map(p => `${p.name || ''} | ${p.price || ''} | ${(p.features || '').replace(/\n/g, ';')} | ${p.btn || ''} | ${p.hot ? '*' : ''} | ${p.btnUrl || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Тарифы (Название | Цена | Фичи;Фичи | Кнопка | * | URL)</label><textarea class="code-in" rows="6" oninput="setPricingPlans(this.value)">${esc(plans)}</textarea></div>
-      <div style="font-size:11px;color:var(--mute);padding:6px 0">Пример: Про | 990₽ | Всё из Старт;Аналитика | Выбрать | * | #</div>`;
-
-  /* --- TEAM --- */
+    h = renderRepeater('pricing-plans', c.plans || [], [
+      { key: 'name', type: 'text', placeholder: 'Название тарифа', label: 'Название' },
+      { key: 'price', type: 'text', placeholder: '990₽', label: 'Цена' },
+      { key: 'features', type: 'textarea', placeholder: 'Всё из Старт\nАналитика', label: 'Фичи (по одной на строку)' },
+      { key: 'btn', type: 'text', placeholder: 'Выбрать', label: 'Текст кнопки' },
+      { key: 'btnUrl', type: 'text', placeholder: '#', label: 'URL кнопки' },
+      { key: 'hot', type: 'checkbox', label: 'Выделенный тариф' }
+    ], (items) => setContent('plans', items));
   } else if (t === 'team') {
-    const members = (c.members || []).map(m => `${m.name || ''} | ${m.role || ''} | ${m.avatar || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Сотрудники (Имя | Роль | URL фото)</label><textarea class="code-in" rows="6" oninput="setTeamMembers(this.value)">${esc(members)}</textarea></div>`;
-
-  /* --- STATS --- */
+    h = renderRepeater('team-members', c.members || [], [
+      { key: 'name', type: 'text', placeholder: 'Анна Иванова', label: 'Имя' },
+      { key: 'role', type: 'text', placeholder: 'CEO', label: 'Должность' },
+      { key: 'avatar', type: 'text', placeholder: 'https://…', label: 'Фото (URL)' }
+    ], (items) => setContent('members', items));
   } else if (t === 'stats') {
-    const items = (c.items || []).map(i => `${i.value || ''} | ${i.label || ''}`).join('\n');
-    h = `<div class="row col"><label class="w">Статистика (Значение | Подпись)</label><textarea class="code-in" rows="5" oninput="setStatsItems(this.value)">${esc(items)}</textarea></div>`;
-
-  /* --- COOKIE --- */
+    h = renderRepeater('stats-items', c.items || [], [
+      { key: 'value', type: 'text', placeholder: '12K', label: 'Значение' },
+      { key: 'label', type: 'text', placeholder: 'Клиентов', label: 'Подпись' }
+    ], (items) => setContent('items', items));
   } else if (t === 'cookie') {
-    h = `<div class="row col"><label class="w">Текст</label><textarea class="code-in" rows="3" oninput="setContent('text',this.value)">${esc(c.text || '')}</textarea></div>
-      <div class="row col"><label class="w">Текст кнопки</label><input type="text" value="${esc(c.btnText || 'Принять')}" oninput="setContent('btnText',this.value)"/></div>`;
-
-  /* --- CARD / TESTIMONIAL / HERO --- */
-  } else if (['card', 'hero', 'testimonial'].includes(t)) {
-    if ('title' in c || t === 'card' || t === 'hero') h += `<div class="row col"><label class="w">Заголовок</label><input type="text" value="${esc(c.title || '')}" oninput="setContent('title',this.value)"/></div>`;
-    if ('text' in c || t === 'card' || t === 'hero' || t === 'testimonial') h += `<div class="row col"><label class="w">Текст</label><textarea class="code-in" rows="3" oninput="setContent('text',this.value)">${esc(c.text || '')}</textarea></div>`;
-    if (t === 'hero') h += `<div class="row col"><label class="w">Текст кнопки</label><input type="text" value="${esc(c.btn || '')}" oninput="setContent('btn',this.value)"/></div>`;
-    if (t === 'testimonial') h += `<div class="row col"><label class="w">Автор</label><input type="text" value="${esc(c.author || '')}" oninput="setContent('author',this.value)"/></div>
-      <div class="row col"><label class="w">Должность</label><input type="text" value="${esc(c.role || '')}" oninput="setContent('role',this.value)"/></div>`;
+    h = textArea('text', 'Текст', 3) + inputText('btnText', 'Текст кнопки', 'Принять');
+  } else if (t === 'card' || t === 'hero' || t === 'testimonial') {
+    if (t === 'card') {
+      h = inputText('title', 'Заголовок') + textArea('text', 'Описание', 3);
+    } else if (t === 'hero') {
+      h = inputText('title', 'Заголовок') + textArea('text', 'Подзаголовок', 2) +
+          inputText('btn', 'Текст кнопки') + inputText('btnUrl', 'URL кнопки', '#') +
+          `<div class="row"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" ${c.showBtn !== false ? 'checked' : ''} onchange="setContent('showBtn',this.checked)"/>Показывать кнопку</label></div>`;
+    } else {
+      h = textArea('text', 'Текст отзыва', 3) + inputText('author', 'Автор') + inputText('role', 'Должность');
+    }
+  } else if (t === 'scrollbar' || t === 'particles' || t === 'divider' || t === 'spacer' || t === 'section' || t === 'container' || t === 'columns' || t === 'grid') {
+    h = `<div style="color:var(--mute);font-size:11.5px;padding:6px 0;line-height:1.6">Этот элемент не имеет редактируемого контента.<br/>Используй вкладку «Стиль» для настройки внешнего вида.</div>`;
   } else {
-    h = `<div style="color:var(--mute);font-size:11.5px;padding:6px 0">Для этого элемента нет настраиваемого контента — используй вкладку «Стиль».</div>`;
+    h = `<div style="color:var(--mute);font-size:11.5px;padding:6px 0">Для этого типа нет контентных настроек.</div>`;
   }
 
   box.innerHTML = h;
+}
+
+/* ---- Repeater UI ---- */
+function renderRepeater(repeaterId, items, fields, onChange) {
+  const container = document.createElement('div');
+  container.className = 'repeater';
+  container.dataset.repeaterId = repeaterId;
+
+  const rebuild = (arr) => {
+    const cont = document.querySelector(`.repeater[data-repeater-id="${repeaterId}"]`);
+    if (!cont) return;
+    cont.innerHTML = '';
+    arr.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'rep-item';
+      const flds = document.createElement('div');
+      flds.className = 'rep-item__fields';
+      fields.forEach(f => {
+        if (f.type === 'select') {
+          const sel = document.createElement('select');
+          (f.options || []).forEach(o => {
+            const opt = document.createElement('option');
+            opt.value = o; opt.textContent = o;
+            if ((item[f.key] || '') === o) opt.selected = true;
+            sel.appendChild(opt);
+          });
+          sel.oninput = () => { item[f.key] = sel.value; onChange(arr); };
+          flds.appendChild(sel);
+        } else if (f.type === 'checkbox') {
+          const lbl = document.createElement('label');
+          lbl.className = 'net-chk';
+          lbl.style.marginBottom = '0';
+          const inp = document.createElement('input');
+          inp.type = 'checkbox';
+          inp.checked = !!item[f.key];
+          inp.onchange = () => { item[f.key] = inp.checked; onChange(arr); };
+          lbl.appendChild(inp);
+          lbl.appendChild(document.createTextNode(f.label || ''));
+          flds.appendChild(lbl);
+        } else if (f.type === 'textarea') {
+          const ta = document.createElement('textarea');
+          ta.placeholder = f.placeholder || '';
+          ta.value = item[f.key] || '';
+          ta.rows = 2;
+          ta.oninput = debounce(() => { item[f.key] = ta.value; onChange(arr); }, 300);
+          flds.appendChild(ta);
+        } else {
+          const inp = document.createElement('input');
+          inp.type = 'text';
+          inp.placeholder = f.placeholder || '';
+          inp.value = item[f.key] || '';
+          inp.oninput = debounce(() => { item[f.key] = inp.value; onChange(arr); }, 300);
+          flds.appendChild(inp);
+        }
+      });
+      const ctrls = document.createElement('div');
+      ctrls.className = 'rep-item__ctrls';
+      const mkBtn = (label, title, cb, cls = '') => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.title = title;
+        b.className = cls;
+        b.onclick = (e) => { e.preventDefault(); cb(); };
+        return b;
+      };
+      ctrls.appendChild(mkBtn('▲', 'Вверх', () => {
+        if (i === 0) return;
+        [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]];
+        onChange(arr); rebuild(arr);
+      }));
+      ctrls.appendChild(mkBtn('▼', 'Вниз', () => {
+        if (i === arr.length - 1) return;
+        [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]];
+        onChange(arr); rebuild(arr);
+      }));
+      ctrls.appendChild(mkBtn('✕', 'Удалить', () => {
+        arr.splice(i, 1);
+        onChange(arr); rebuild(arr);
+      }, 'del'));
+      row.appendChild(flds);
+      row.appendChild(ctrls);
+      cont.appendChild(row);
+    });
+
+    const addBtn = document.createElement('button');
+    addBtn.type = 'button';
+    addBtn.className = 'rep-add';
+    addBtn.innerHTML = '＋ Добавить пункт';
+    addBtn.onclick = (e) => {
+      e.preventDefault();
+      const newItem = {};
+      fields.forEach(f => {
+        newItem[f.key] = f.type === 'checkbox' ? false : '';
+      });
+      arr.push(newItem);
+      onChange(arr); rebuild(arr);
+    };
+    cont.appendChild(addBtn);
+  };
+  rebuild(items);
+  return container.outerHTML;
 }
 
 /* ---- ХЕЛПЕРЫ КОНТЕНТА ---- */
@@ -2849,56 +3188,13 @@ const setContent = (k, v) => {
   el.content = el.content || {};
   el.content[k] = v;
   renderCanvas();
+  // для репитеров не перерисовываем правую панель — иначе потеряется фокус
+  if (!['items', 'plans', 'members', 'fields'].includes(k)) {
+    // ок, пересборка контента не нужна
+  }
   pushHistoryDebounced();
 };
-const setItems = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content = el.content || {};
-  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean);
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setDelimitedItems = (v, k1, k2) => {
-  const el = selEl();
-  if (!el) return;
-  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('::');
-    return { [k1]: (p[0] || '').trim(), [k2]: (p.slice(1).join('::') || '').trim() };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setDropdownItems = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|');
-    return { label: (p[0] || '').trim(), url: (p.slice(1).join('|') || '').trim() };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setNavItems = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|');
-    return { label: (p[0] || '').trim(), url: (p.slice(1).join('|') || '').trim() };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setFormFields = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.fields = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|').map(x => x.trim());
-    return { type: p[0] || 'text', placeholder: p[1] || '', required: p[2] === 'yes' };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
+
 const setTableCols = v => {
   const el = selEl();
   if (!el) return;
@@ -2910,40 +3206,6 @@ const setTableRows = v => {
   const el = selEl();
   if (!el) return;
   el.content.rows = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => line.split('|').map(c => c.trim()));
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setPricingPlans = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.plans = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|').map(x => x.trim());
-    return {
-      name: p[0] || '', price: p[1] || '',
-      features: (p[2] || '').replace(/;/g, '\n'),
-      btn: p[3] || 'Выбрать', hot: p[4] === '*', btnUrl: p[5] || '#'
-    };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setTeamMembers = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.members = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|').map(x => x.trim());
-    return { name: p[0] || '', role: p[1] || '', avatar: p[2] || '' };
-  });
-  renderCanvas();
-  pushHistoryDebounced();
-};
-const setStatsItems = v => {
-  const el = selEl();
-  if (!el) return;
-  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const p = line.split('|').map(x => x.trim());
-    return { value: p[0] || '', label: p[1] || '' };
-  });
   renderCanvas();
   pushHistoryDebounced();
 };
@@ -3452,6 +3714,7 @@ function renderPreviewPage(pageId) {
   if (!page) { Toast.warn('Страница не найдена'); return; }
   prevPageId = pageId;
   const html = exportPageHTML(page);
+  // Навигация между страницами внутри iframe
   const navScript = `<script>document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';if(!h||h.charAt(0)==='#')return;if(h.indexOf('http')===0||h.indexOf('mailto:')===0||h.indexOf('tel:')===0)return;if(h.indexOf('.html')>-1||h.indexOf('.htm')>-1){e.preventDefault();window.parent.postMessage({type:'siter-nav',href:h},'*');}});<\/script>`;
   const finalHtml = html.replace('</body>', navScript + '</body>');
   if (prevUrl) URL.revokeObjectURL(prevUrl);
@@ -3477,118 +3740,220 @@ function prevWidth(w) {
 }
 
 /* ============================================================
-   RUNTIME SCRIPT (для экспорта)
+   RUNTIME SCRIPT — работает на экспортированном сайте
+   (Единый обработчик через делегирование, БЕЗ inline onclick)
    ============================================================ */
 const RUNTIME_JS = `
 (function(){
-  // Dropdown close on outside click
+  'use strict';
+
+  /* ---------- Утилиты ---------- */
+  function qs(s, r){ return (r||document).querySelector(s); }
+  function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+
+  /* ---------- Dropdown ---------- */
   document.addEventListener('click', function(e){
-    var opened = document.querySelectorAll('.siter-dd.open');
-    opened.forEach(function(dd){
-      if(!dd.contains(e.target)) dd.classList.remove('open');
-    });
-  });
-
-  // Tabs
-  document.querySelectorAll('.siter-tabs').forEach(function(tabs){
-    var btns = tabs.querySelectorAll('.siter-tabs__nav button');
-    var panes = tabs.querySelectorAll('.siter-tabs__pane');
-    btns.forEach(function(btn, i){
-      btn.addEventListener('click', function(){
-        btns.forEach(function(b){b.classList.remove('on');});
-        panes.forEach(function(p){p.classList.remove('on');});
-        btn.classList.add('on');
-        if(panes[i]) panes[i].classList.add('on');
-      });
-    });
-  });
-
-  // Accordion / FAQ
-  document.querySelectorAll('.siter-acc__head, .siter-faq__q').forEach(function(head){
-    head.addEventListener('click', function(){
-      head.parentElement.classList.toggle('open');
-    });
-  });
-
-  // Navbar mobile toggle
-  document.querySelectorAll('.siter-navbar__toggle').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      btn.parentElement.classList.toggle('menu-open');
-      var menu = btn.parentElement.querySelector('.siter-navbar__menu');
-      if(menu) menu.classList.toggle('open');
-    });
-  });
-
-  // Modals
-  document.querySelectorAll('[data-siter-modal-btn]').forEach(function(btn){
-    btn.addEventListener('click', function(e){
+    var ddBtn = e.target.closest('.siter-dd__btn');
+    if (ddBtn) {
       e.preventDefault();
-      var id = btn.getAttribute('data-modal-target');
+      var dd = ddBtn.closest('.siter-dd');
+      var wasOpen = dd.classList.contains('open');
+      qsa('.siter-dd.open').forEach(function(o){ o.classList.remove('open'); });
+      if (!wasOpen) dd.classList.add('open');
+      return;
+    }
+    if (!e.target.closest('.siter-dd')) {
+      qsa('.siter-dd.open').forEach(function(o){ o.classList.remove('open'); });
+    }
+  });
+
+  /* ---------- Tabs ---------- */
+  document.addEventListener('click', function(e){
+    var tabBtn = e.target.closest('.siter-tabs__nav button');
+    if (!tabBtn) return;
+    var tabs = tabBtn.closest('.siter-tabs');
+    var idx = +tabBtn.getAttribute('data-tab-i') || 0;
+    qsa('.siter-tabs__nav button', tabs).forEach(function(b){ b.classList.remove('on'); });
+    qsa('.siter-tabs__pane', tabs).forEach(function(p){ p.classList.remove('on'); });
+    tabBtn.classList.add('on');
+    var panes = qsa('.siter-tabs__pane', tabs);
+    if (panes[idx]) panes[idx].classList.add('on');
+  });
+
+  /* ---------- Accordion / FAQ ---------- */
+  document.addEventListener('click', function(e){
+    var head = e.target.closest('.siter-acc__head, .siter-faq__q');
+    if (!head) return;
+    e.preventDefault();
+    head.parentElement.classList.toggle('open');
+  });
+
+  /* ---------- Modal ---------- */
+  document.addEventListener('click', function(e){
+    var mBtn = e.target.closest('[data-siter-modal-btn]');
+    if (mBtn) {
+      e.preventDefault();
+      var id = mBtn.getAttribute('data-modal-target');
       var m = document.getElementById(id);
-      if(m) m.classList.add('open');
-    });
+      if (m) m.classList.add('open');
+      return;
+    }
+    var closer = e.target.closest('.siter-modal__close');
+    if (closer) {
+      var mm = closer.closest('.siter-modal');
+      if (mm) mm.classList.remove('open');
+      return;
+    }
+    if (e.target.classList.contains('siter-modal')) {
+      e.target.classList.remove('open');
+    }
   });
-  document.querySelectorAll('[data-siter-modal-content]').forEach(function(m){
-    m.addEventListener('click', function(e){
-      if(e.target === m) m.classList.remove('open');
-    });
-    m.querySelectorAll('.siter-modal__close').forEach(function(b){
-      b.addEventListener('click', function(){ m.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      qsa('.siter-modal.open').forEach(function(m){ m.classList.remove('open'); });
+    }
+  });
+
+  /* ---------- Navbar toggle ---------- */
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('.siter-navbar__toggle');
+    if (!t) return;
+    e.preventDefault();
+    var nav = t.closest('.siter-navbar');
+    var menu = qs('.siter-navbar__menu', nav);
+    if (menu) menu.classList.toggle('open');
+  });
+
+  /* ---------- Sidebar items ---------- */
+  document.addEventListener('click', function(e){
+    var s = e.target.closest('.siter-sidebar__item');
+    if (!s) return;
+    var sidebar = s.closest('.siter-sidebar');
+    qsa('.siter-sidebar__item', sidebar).forEach(function(x){ x.classList.remove('on'); });
+    s.classList.add('on');
+  });
+
+  /* ---------- Pagination ---------- */
+  document.addEventListener('click', function(e){
+    var p = e.target.closest('[data-siter-pagination] button');
+    if (!p) return;
+    var wrap = p.closest('[data-siter-pagination]');
+    qsa('button', wrap).forEach(function(b){ b.classList.remove('on'); });
+    p.classList.add('on');
+  });
+
+  /* ---------- Toggle ---------- */
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-siter-toggle]');
+    if (!t) return;
+    e.preventDefault();
+    t.classList.toggle('on');
+  });
+
+  /* ---------- Range value display ---------- */
+  document.addEventListener('input', function(e){
+    if (e.target.matches('[data-siter-range]')) {
+      var wrap = e.target.closest('.siter-range');
+      var valEl = wrap ? wrap.querySelector('[data-siter-range-val]') : null;
+      if (valEl) valEl.textContent = e.target.value;
+    }
+  });
+
+  /* ---------- Rating (interactive) ---------- */
+  document.addEventListener('click', function(e){
+    var star = e.target.closest('.siter-rating span[data-star]');
+    if (!star) return;
+    var rating = star.closest('.siter-rating');
+    if (rating.getAttribute('data-interactive') === 'false') return;
+    var idx = +star.getAttribute('data-star');
+    qsa('span', rating).forEach(function(s, i){
+      s.classList.toggle('on', i < idx);
     });
   });
 
-  // Cookie
-  var cookie = document.querySelector('.siter-cookie');
-  if(cookie){
-    try{
-      if(localStorage.getItem('siter-cookie-ok') === '1') cookie.style.display = 'none';
-    }catch(e){}
-    var okBtn = cookie.querySelector('[data-siter-cookie-ok]');
-    if(okBtn) okBtn.addEventListener('click', function(){
-      try{ localStorage.setItem('siter-cookie-ok','1'); }catch(e){}
-      cookie.style.display = 'none';
-    });
-  }
-
-  // Form
-  document.querySelectorAll('[data-siter-form]').forEach(function(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var ok = true;
-      form.querySelectorAll('[required]').forEach(function(f){
-        if(!f.value.trim()){ ok = false; f.style.borderColor = '#ff4d5e'; }
-        else f.style.borderColor = '';
-      });
-      var msg = form.querySelector('.siter-form__msg');
-      if(!ok){
-        if(msg){ msg.textContent = 'Заполните обязательные поля'; msg.className = 'siter-form__msg err'; msg.style.display = 'block'; }
+  /* ---------- Cookie banner ---------- */
+  (function(){
+    var ck = qs('.siter-cookie');
+    if (!ck) return;
+    try {
+      if (localStorage.getItem('siter-cookie-ok') === '1') {
+        ck.style.display = 'none';
         return;
       }
-      var action = form.getAttribute('data-action');
-      if(action){
-        // Отправляем на указанный URL
-        var data = new FormData(form);
-        fetch(action, { method: 'POST', body: data })
-          .then(function(){ if(msg){ msg.textContent = 'Спасибо! Заявка отправлена.'; msg.className = 'siter-form__msg'; msg.style.display = 'block'; } form.reset(); })
-          .catch(function(){ if(msg){ msg.textContent = 'Ошибка отправки. Попробуйте ещё раз.'; msg.className = 'siter-form__msg err'; msg.style.display = 'block'; } });
+    } catch(e){}
+    var ok = ck.querySelector('[data-siter-cookie-ok]');
+    if (ok) ok.addEventListener('click', function(){
+      try { localStorage.setItem('siter-cookie-ok','1'); } catch(e){}
+      ck.style.display = 'none';
+    });
+  })();
+
+  /* ---------- Back to top ---------- */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-siter-top]');
+    if (!b) return;
+    e.preventDefault();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ---------- Form submission ---------- */
+  document.addEventListener('submit', function(e){
+    var form = e.target.closest('[data-siter-form]');
+    if (!form) return;
+    e.preventDefault();
+
+    var valid = true;
+    qsa('[required]', form).forEach(function(f){
+      if (f.type === 'checkbox') {
+        if (!f.checked) { valid = false; }
+      } else if (!String(f.value || '').trim()) {
+        valid = false;
+        f.style.borderColor = '#ff4d5e';
       } else {
-        if(msg){ msg.textContent = 'Спасибо! Заявка отправлена.'; msg.className = 'siter-form__msg'; msg.style.display = 'block'; }
-        form.reset();
+        f.style.borderColor = '';
       }
     });
+
+    var msg = form.querySelector('.siter-form__msg');
+    var successText = form.getAttribute('data-success') || 'Спасибо! Заявка отправлена.';
+
+    if (!valid) {
+      if (msg) {
+        msg.textContent = 'Заполните обязательные поля';
+        msg.className = 'siter-form__msg err';
+        msg.style.display = 'block';
+      }
+      return;
+    }
+
+    var action = form.getAttribute('data-action');
+    function showSuccess(){
+      if (msg) {
+        msg.textContent = successText;
+        msg.className = 'siter-form__msg';
+        msg.style.display = 'block';
+      }
+      form.reset();
+    }
+    if (action) {
+      var data = new FormData(form);
+      fetch(action, { method: 'POST', body: data })
+        .then(function(){ showSuccess(); })
+        .catch(function(){
+          if (msg) {
+            msg.textContent = 'Ошибка отправки. Попробуйте позже.';
+            msg.className = 'siter-form__msg err';
+            msg.style.display = 'block';
+          }
+        });
+    } else {
+      showSuccess();
+    }
   });
 
-  // Back to top (дублируем на случай если inline не сработал)
-  document.querySelectorAll('[data-siter-top]').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
-  });
-
-  // Scroll progress bar
-  var scrollbars = document.querySelectorAll('[data-siter-scrollbar]');
-  if(scrollbars.length){
+  /* ---------- Scrollbar progress ---------- */
+  var scrollbars = qsa('[data-siter-scrollbar]');
+  if (scrollbars.length) {
     var updateScrollbar = function(){
       var h = document.documentElement.scrollHeight - window.innerHeight;
       var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
@@ -3599,14 +3964,14 @@ const RUNTIME_JS = `
     updateScrollbar();
   }
 
-  // Parallax
-  var parallaxEls = document.querySelectorAll('[data-parallax]');
-  if(parallaxEls.length){
+  /* ---------- Parallax ---------- */
+  var parallaxEls = qsa('[data-parallax]');
+  if (parallaxEls.length) {
     var updateParallax = function(){
       parallaxEls.forEach(function(el){
         var speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
         var rect = el.getBoundingClientRect();
-        var centerDelta = (window.innerHeight/2) - (rect.top + rect.height/2);
+        var centerDelta = (window.innerHeight / 2) - (rect.top + rect.height / 2);
         el.style.transform = 'translateY(' + (centerDelta * speed * 0.1) + 'px)';
       });
     };
@@ -3615,16 +3980,15 @@ const RUNTIME_JS = `
     updateParallax();
   }
 
-  // Counter + Progress animation on scroll
-  var animateEls = document.querySelectorAll('[data-siter-animate]');
-  if(animateEls.length && 'IntersectionObserver' in window){
+  /* ---------- Counter + Progress animation ---------- */
+  var animateEls = qsa('[data-siter-animate]');
+  if (animateEls.length && 'IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(!entry.isIntersecting) return;
+        if (!entry.isIntersecting) return;
         var el = entry.target;
         var kind = el.getAttribute('data-siter-animate');
-
-        if(kind === 'counter'){
+        if (kind === 'counter') {
           var target = parseFloat(el.getAttribute('data-target')) || 0;
           var dur = parseInt(el.getAttribute('data-dur')) || 1400;
           var suffix = el.getAttribute('data-suffix') || '';
@@ -3634,16 +3998,16 @@ const RUNTIME_JS = `
             var t = Math.min(1, (now - start) / dur);
             var eased = 1 - Math.pow(1 - t, 3);
             var cur = Math.floor(target * eased);
-            if(valEl) valEl.textContent = cur + suffix;
-            if(t < 1) requestAnimationFrame(update);
-            else if(valEl) valEl.textContent = target + suffix;
+            if (valEl) valEl.textContent = cur + suffix;
+            if (t < 1) requestAnimationFrame(update);
+            else if (valEl) valEl.textContent = target + suffix;
           };
           requestAnimationFrame(update);
         }
-        if(kind === 'progress'){
+        if (kind === 'progress') {
           var value = parseFloat(el.getAttribute('data-value')) || 0;
           var bar = el.querySelector('.siter-progress__bar');
-          if(bar) setTimeout(function(){ bar.style.width = value + '%'; }, 50);
+          if (bar) setTimeout(function(){ bar.style.width = value + '%'; }, 50);
         }
         obs.unobserve(el);
       });
@@ -3651,12 +4015,12 @@ const RUNTIME_JS = `
     animateEls.forEach(function(el){ obs.observe(el); });
   }
 
-  // Appearance animations on scroll
-  var animEls = document.querySelectorAll('[data-siter-anim]');
-  if(animEls.length && 'IntersectionObserver' in window){
+  /* ---------- Appearance animations on scroll ---------- */
+  var animEls = qsa('[data-siter-anim]');
+  if (animEls.length && 'IntersectionObserver' in window) {
     var animObs = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           entry.target.classList.add('siter-anim-in');
           animObs.unobserve(entry.target);
         }
@@ -3665,14 +4029,18 @@ const RUNTIME_JS = `
     animEls.forEach(function(el){ animObs.observe(el); });
   }
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var id = a.getAttribute('href').slice(1);
-      if(!id) return;
-      var target = document.getElementById(id);
-      if(target){ e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    });
+  /* ---------- Smooth scroll for anchor links ---------- */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href === '#' || href.length < 2) return;
+    var id = href.slice(1);
+    var target = document.getElementById(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
   });
 })();
 `;
@@ -3680,8 +4048,6 @@ const RUNTIME_JS = `
 /* ============================================================
    ЭКСПОРТ HTML
    ============================================================ */
-function escAttr(s) { return String(s || '').replace(/"/g, '&quot;'); }
-
 function exportPageHTML(page) {
   const seo = page.seo || {};
   const title = seo.title || page.name;
@@ -3729,7 +4095,7 @@ function exportPageHTML(page) {
         order: var(--mob-ord, 0);
         z-index: auto !important;
       }
-      .el--scrollbar, .el--particles, .el--loader{ display: none !important; }
+      .el--scrollbar, .el--particles{ display: none !important; }
       .el--divider{ min-height: 2px !important; }
       .el--spacer{ min-height: var(--mob-minh, 40px) !important; }
       .siter-pricing{ grid-template-columns: 1fr; height: auto; }
@@ -3737,7 +4103,7 @@ function exportPageHTML(page) {
       .siter-stats{ grid-template-columns: repeat(2, 1fr); height: auto; }
       .siter-navbar{ padding: 0 20px; }
       .siter-navbar__menu{ display: none; }
-      .siter-navbar__menu.open{ display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #0f1218; border-top: 1px solid #232936; padding: 16px 20px; gap: 14px; }
+      .siter-navbar__menu.open{ display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #0f1218; border-top: 1px solid #232936; padding: 16px 20px; gap: 14px; z-index: 100; }
       .siter-navbar__toggle{ display: block; }
       .siter-hero h1{ font-size: 36px !important; letter-spacing: -1px !important; }
       .siter-steps{ flex-direction: column; gap: 8px; height: auto; }
@@ -3772,8 +4138,8 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-s
 ul{list-style:disc}
 img,video,iframe{max-width:100%}
 a{color:inherit}
-button{cursor:pointer}
-@keyframes siter-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+button{cursor:pointer;font-family:inherit}
+input,textarea,select{font-family:inherit}
 ${COMPONENT_CSS}
 ${extraCss}
 ${customCssAll}
@@ -3870,7 +4236,7 @@ function exportZIP() {
       files.push({ name: 'assets/' + safeName, data: bytes });
     }
     files.push({ name: 'README.txt', data: `SITER Geenerik — экспорт проекта\n\nПроект: ${State.projectName}\nСтраниц: ${State.pages.length}\nДата: ${new Date().toLocaleString('ru-RU')}\n\nСтруктура:\n${State.pages.map(p => '  ' + (p.isHome ? 'index.html (главная)' : p.slug + '/index.html')).join('\n')}\n\nЗагрузите содержимое архива на любой хостинг.\n` });
-    files.push({ name: 'project.siter', data: JSON.stringify({ format: 'siter-geenerik', version: 4, name: State.projectName, pages: State.pages }, null, 2) });
+    files.push({ name: 'project.siter', data: JSON.stringify({ format: 'siter-geenerik', version: 5, name: State.projectName, pages: State.pages }, null, 2) });
     const zip = makeZip(files);
     const blob = new Blob([zip], { type: 'application/zip' });
     const url = URL.createObjectURL(blob);
@@ -3895,7 +4261,7 @@ function download(content, name, mime) {
    СОХРАНЕНИЕ / ЗАГРУЗКА
    ============================================================ */
 function saveJSON() {
-  const data = { format: 'siter-geenerik', version: 4, name: State.projectName, pages: State.pages };
+  const data = { format: 'siter-geenerik', version: 5, name: State.projectName, pages: State.pages };
   download(JSON.stringify(data, null, 2), (State.projectName || 'project') + '.siter', 'application/json');
   Toast.ok('Файл .siter сохранён');
 }
@@ -4015,10 +4381,26 @@ const Help = {
           <li>Тяни за углы рамки, чтобы менять размер.</li>
           <li>«Экспорт» в правом верхнем углу — ZIP с готовым сайтом.</li>
         </ul>
-        <h4>🖱 Интерактивные элементы</h4>
-        <p>Дропдаун, табы, аккордеон, FAQ, модалка, форма, cookie-баннер, back-to-top, счётчик, прогресс, parallax, scroll-индикатор — все работают по-настоящему в экспортированном сайте.</p>
+        <h4>🎛 Интерактивные элементы</h4>
+        <p><b>Все работают по-настоящему</b> в предпросмотре и на экспортированном сайте:</p>
+        <ul>
+          <li><b>Dropdown</b> — выпадающее меню с настраиваемыми пунктами (добавляй в свойствах).</li>
+          <li><b>Табы</b> — переключение вкладок с анимацией.</li>
+          <li><b>Аккордеон / FAQ</b> — раскрытие/закрытие пунктов по клику.</li>
+          <li><b>Модалка</b> — открывается по клику, закрывается по Esc или клику вне.</li>
+          <li><b>Форма</b> — валидация обязательных полей и отправка.</li>
+          <li><b>Radio / Checkbox / Range / Select</b> — настоящие поля ввода.</li>
+          <li><b>Toggle</b> — переключатель по клику.</li>
+          <li><b>Рейтинг</b> — звёзды кликабельны.</li>
+          <li><b>Счётчик / Прогресс</b> — анимируются при прокрутке.</li>
+          <li><b>Cookie-баннер</b> — запоминает согласие пользователя.</li>
+          <li><b>Parallax</b> — реакция на скролл.</li>
+          <li><b>Scrollbar-индикатор</b> — полоса прогресса страницы.</li>
+        </ul>
+        <h4>📝 Как редактировать списки</h4>
+        <p>У элементов со списками (dropdown, tabs, accordion, FAQ, форма, pricing, team и т.д.) в свойствах есть <b>повторитель</b>: каждая строка — отдельный пункт, кнопки ▲▼ двигают, ✕ удаляет, «＋ Добавить» создаёт новый.</p>
         <h4>📱 Адаптивность</h4>
-        <p>Экспортированный сайт автоматически схлопывается в колонку на экранах < 768px. Навбар получает burger-меню, тарифы/команда/статистика — 1-2 колонки.</p>
+        <p>Экспортированный сайт автоматически схлопывается в колонку на экранах &lt; 768px. Навбар получает burger-меню.</p>
         <h4>⌨️ Горячие клавиши</h4>
         <ul>
           <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd> — отменить / повторить</li>
@@ -4032,12 +4414,10 @@ const Help = {
           <li>Стрелки — двигать на 1px (Shift — 10px)</li>
           <li><kbd>Esc</kbd> — снять выделение</li>
         </ul>
+        <h4>🔗 Ссылки и действия</h4>
+        <p>В свойствах любого элемента можно задать тип действия: URL, страница сайта, якорь, модалка, email, телефон, JavaScript, скачивание файла.</p>
         <h4>📦 Медиафайлы</h4>
         <p>Файлы хранятся в <b>IndexedDB</b> без ограничений по размеру. Загрузи через вкладку «Медиа» → «Загрузить файл», затем кликни по файлу, чтобы применить к выделенному элементу.</p>
-        <h4>🔗 Ссылки между страницами</h4>
-        <p>В свойствах элемента выбери тип «Страница сайта» и укажи целевую страницу. В предпросмотре клик по такой ссылке переключит страницу.</p>
-        <h4>🎨 Стили и анимации</h4>
-        <p>4 вкладки: Свойства (размеры, отступы, содержимое), Стиль (фон, шрифт, эффекты), Анимация (появление, hover, parallax), SEO (мета, атрибуты).</p>
       </div>`,
       `<button class="btn btn--p" onclick="closeModal()">Понятно</button>`, true);
   }
@@ -4186,21 +4566,6 @@ $('#projWrap').addEventListener('click', e => {
 });
 
 /* ============================================================
-   TAB-ХЕЛПЕР ВНУТРИ КОМПОНЕНТОВ
-   ============================================================ */
-function siterTabs(btn) {
-  const nav = btn.parentElement;
-  const tabs = nav.parentElement;
-  const btns = nav.querySelectorAll('button');
-  const panes = tabs.querySelectorAll('.siter-tabs__pane');
-  const i = +btn.dataset.tabI || 0;
-  btns.forEach(b => b.classList.remove('on'));
-  panes.forEach(p => p.classList.remove('on'));
-  btn.classList.add('on');
-  if (panes[i]) panes[i].classList.add('on');
-}
-
-/* ============================================================
    ИНИЦИАЛИЗАЦИЯ
    ============================================================ */
 (async function init() {
@@ -4229,7 +4594,7 @@ function siterTabs(btn) {
 
   window.addEventListener('beforeunload', () => saveLocal());
 
-  console.log('%cSITER Geenerik v4', 'font-weight:900;font-size:16px;color:#4f7cff', '— редактор готов');
+  console.log('%cSITER Geenerik v5', 'font-weight:900;font-size:16px;color:#4f7cff', '— редактор готов');
 })();
 </script>
 </body>
