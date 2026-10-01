@@ -359,6 +359,17 @@ a{color:inherit;text-decoration:none}
 .toast.err{border-left-color:var(--danger)}
 .toast.warn{border-left-color:var(--warn)}
 @keyframes slideIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.rep-field{display:flex;flex-direction:column;gap:3px}
+.rep-field-label{font-size:9.5px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.siter-team__item--link{text-decoration:none;color:inherit;cursor:pointer;transition:.15s}
+.siter-team__item--link:hover{transform:translateY(-3px)}
+.siter-search{position:relative;width:100%;height:100%}
+.siter-search__results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#131821;border:1px solid #2c3342;border-radius:10px;padding:6px;display:none;z-index:1200;box-shadow:0 10px 40px rgba(0,0,0,.5);max-height:300px;overflow-y:auto}
+.siter-search__results.on{display:block}
+.siter-search__item{display:block;padding:10px 12px;color:#c3cad8;border-radius:6px;font-size:13.5px;text-decoration:none;transition:.12s;cursor:pointer}
+.siter-search__item:hover{background:#4f7cff22;color:#6b93ff}
+.siter-search__item small{display:block;color:#8b93a7;font-size:11.5px;margin-top:3px}
+.siter-search__empty{padding:14px;color:#5a6275;font-size:12.5px;text-align:center}
 @media(max-width:1100px){.panel--l{width:210px;min-width:210px}.panel--r{width:280px;min-width:280px}.tb-proj__t{max-width:90px}}
 @media(max-width:820px){.tb-menus{display:none}.tb-stats{display:none}}
 </style>
@@ -374,7 +385,7 @@ a{color:inherit;text-decoration:none}
       <button class="l-btn l-btn--ghost" onclick="openEditor()">Открыть редактор</button>
     </nav>
     <section class="l-hero">
-      <div class="l-badge">Beta v6 — полный редактор свойств</div>
+      <div class="l-badge">Beta v7 — полный редактор свойств</div>
       <h1 class="l-title">Создавай сайты.<br/><em>Полностью настраиваемо.</em></h1>
       <p class="l-sub">Каждый элемент имеет полный набор настроек. Все интерактивные компоненты работают в экспорте. Скачай ZIP с чистым HTML/CSS/JS.</p>
       <div class="l-actions">
@@ -1159,9 +1170,9 @@ const COMPONENT_CSS = `
 .siter-breadcrumb span:last-child{color:#e7eaf1}
 .siter-breadcrumb i{font-style:normal;opacity:.5}
 .siter-pagination{display:flex;gap:8px;width:100%;height:100%;align-items:center}
-.siter-pagination button{width:38px;height:38px;border-radius:9px;background:#1a1f2a;border:none;color:#8b93a7;font:inherit;font-size:13px;cursor:pointer;transition:.15s}
-.siter-pagination button.on{background:#4f7cff;color:#fff}
-.siter-pagination button:hover{background:#2a3142;color:#fff}
+.siter-pagination button,.siter-pagination a{width:38px;height:38px;border-radius:9px;background:#1a1f2a;border:none;color:#8b93a7;font:inherit;font-size:13px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.siter-pagination button.on,.siter-pagination a.on{background:#4f7cff;color:#fff}
+.siter-pagination button:hover,.siter-pagination a:hover{background:#2a3142;color:#fff}
 .siter-sidebar{padding:20px 0;height:100%;width:100%;display:flex;flex-direction:column}
 .siter-sidebar__logo{padding:0 20px 20px;font-size:16px;font-weight:800;color:#fff}
 .siter-sidebar__item{padding:11px 20px;font-size:13.5px;color:#8b93a7;border-left:2px solid transparent;transition:.15s;display:block;text-decoration:none;cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;font-family:inherit;text-align:left;width:100%}
@@ -1266,11 +1277,31 @@ function makeEl(type, x, y) {
 
     /* --- НАВИГАЦИЯ --- */
     navbar: { w: 1200, h: 66, x: 0, y: 0, content: { brand: 'BRAND', brandUrl: '#', items: [{ label: 'Главная', url: 'index.html' }, { label: 'О нас', url: '#' }, { label: 'Контакты', url: '#contact' }], showToggle: true }, styles: { background: '#0f1218ee', borderBottom: '1px solid #232936', backdropFilter: 'blur(12px)' } },
-    breadcrumb: { w: 400, h: 26, x: 80, y: 80, content: { items: ['Главная', 'Каталог', 'Товар'], separator: '/' }, styles: {} },
-    pagination: { w: 300, h: 40, x: 80, y: 80, content: { pages: 5, current: 1 }, styles: {} },
+    breadcrumb: { w: 400, h: 26, x: 80, y: 80, content: { items: [
+      { label: 'Главная', url: 'index.html' },
+      { label: 'Каталог', url: '#' },
+      { label: 'Товар', url: '' }
+    ], separator: '/' }, styles: {} },
+    pagination: { w: 300, h: 40, x: 80, y: 80, content: { pages: 5, current: 1, pageUrls: ['', '', '', '', ''] }, styles: {} },
     sidebar: { w: 240, h: 340, x: 0, y: 0, content: { brand: 'LOGO', items: ['Дашборд', 'Проекты', 'Задачи', 'Настройки'] }, styles: { background: '#0f1218', borderRight: '1px solid #232936' } },
     footer: { w: 1200, h: 140, x: 0, y: 600, content: { text: '© 2025 Все права защищены', showLinks: false, links: [] }, styles: { background: '#0b0e14', borderTop: '1px solid #232936', color: '#8b93a7', fontSize: '13px' } },
-    megamenu: { w: 900, h: 200, x: 80, y: 80, content: { items: [{ title: 'Продукты', list: ['Фича 1', 'Фича 2', 'Фича 3'] }, { title: 'Решения', list: ['Для бизнеса', 'Для дома', 'Для школ'] }, { title: 'О нас', list: ['Команда', 'Блог', 'Карьера'] }] }, styles: { background: '#131821', borderRadius: '14px', padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', borderStyle: 'solid', borderWidth: '1px', borderColor: '#232936' } },
+    megamenu: { w: 900, h: 200, x: 80, y: 80, content: { items: [
+      { title: 'Продукты', links: [
+        { label: 'Фича 1', url: '#' },
+        { label: 'Фича 2', url: '#' },
+        { label: 'Фича 3', url: '#' }
+      ]},
+      { title: 'Решения', links: [
+        { label: 'Для бизнеса', url: '#' },
+        { label: 'Для дома', url: '#' },
+        { label: 'Для школ', url: '#' }
+      ]},
+      { title: 'О нас', links: [
+        { label: 'Команда', url: '#' },
+        { label: 'Блог', url: '#' },
+        { label: 'Карьера', url: '#' }
+      ]}
+    ]}, styles: { background: '#131821', borderRadius: '14px', padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', borderStyle: 'solid', borderWidth: '1px', borderColor: '#232936' } },
 
     /* --- ФОРМЫ --- */
     form: { w: 480, h: 420, x: 80, y: 80, content: {
@@ -1298,7 +1329,7 @@ function makeEl(type, x, y) {
     time: { w: 260, h: 46, x: 80, y: 80, content: { value: '', name: '', required: false }, styles: { background: '#0f1218', borderStyle: 'solid', borderWidth: '1px', borderColor: '#2c3342', borderRadius: '8px', color: '#e7eaf1' } },
     color: { w: 60, h: 46, x: 80, y: 80, content: { value: '#4f7cff', name: '' }, styles: { background: '#0f1218', borderStyle: 'solid', borderWidth: '1px', borderColor: '#2c3342', borderRadius: '8px' } },
     file: { w: 300, h: 60, x: 80, y: 80, content: { text: 'Выбрать файл', accept: '', name: '', multiple: false }, styles: { borderStyle: 'dashed', borderWidth: '2px', borderColor: '#2c3342', borderRadius: '10px', color: '#8b93a7', textAlign: 'center', fontSize: '13px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
-    search: { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'Поиск…', value: '', name: 'q' }, styles: { background: '#0f1218', borderStyle: 'solid', borderWidth: '1px', borderColor: '#2c3342', borderRadius: '100px', color: '#e7eaf1' } },
+    search: { w: 340, h: 46, x: 80, y: 80, content: { placeholder: 'Поиск…', value: '', name: 'q', targetAll: true, targetPageIds: [], noResultsText: 'Ничего не найдено' }, styles: { background: '#0f1218', borderStyle: 'solid', borderWidth: '1px', borderColor: '#2c3342', borderRadius: '100px', color: '#e7eaf1' } },
 
     /* --- КАРТОЧКИ И UI --- */
     card: { w: 340, h: 260, x: 80, y: 80, content: { title: 'Заголовок карточки', text: 'Небольшое описание содержимого карточки.', image: '', showBtn: false, btnText: 'Подробнее', btnUrl: '#' }, styles: { background: '#131821', borderStyle: 'solid', borderWidth: '1px', borderColor: '#232936', borderRadius: '16px', padding: '26px' } },
@@ -1311,10 +1342,10 @@ function makeEl(type, x, y) {
     ]}, styles: {} },
     testimonial: { w: 460, h: 220, x: 80, y: 80, content: { text: 'Отличный сервис! Всем рекомендую.', author: 'Иван Петров', role: 'Директор', avatar: '', rating: 5 }, styles: { background: '#131821', borderStyle: 'solid', borderWidth: '1px', borderColor: '#232936', borderRadius: '16px', padding: '28px' } },
     team: { w: 1000, h: 240, x: 100, y: 80, content: { members: [
-      { name: 'Анна Иванова', role: 'CEO', avatar: '' },
-      { name: 'Иван Петров', role: 'CTO', avatar: '' },
-      { name: 'Мария Сидорова', role: 'Дизайнер', avatar: '' },
-      { name: 'Олег Кузнецов', role: 'Разработчик', avatar: '' }
+      { name: 'Анна Иванова', role: 'CEO', avatar: '', linkType: 'none', url: '' },
+      { name: 'Иван Петров', role: 'CTO', avatar: '', linkType: 'none', url: '' },
+      { name: 'Мария Сидорова', role: 'Дизайнер', avatar: '', linkType: 'none', url: '' },
+      { name: 'Олег Кузнецов', role: 'Разработчик', avatar: '', linkType: 'none', url: '' }
     ]}, styles: {} },
     faq: { w: 700, h: 300, x: 80, y: 80, content: { items: [
       { title: 'Как это работает?', body: 'Очень просто — перетаскивай и настраивай.' },
@@ -1607,11 +1638,15 @@ function renderInner(el) {
         <span>📎 ${esc(c.text || 'Выбрать файл')}</span>
       </label>`;
 
-    case 'search':
-      return `<div style="width:100%;height:100%;display:flex;align-items:center;padding:0 14px;gap:8px">
-        <span style="opacity:.5;font-size:14px">🔍</span>
-        <input type="search" class="siter-input" style="padding:0" placeholder="${esc(c.placeholder || 'Поиск…')}" value="${esc(c.value || '')}" name="${esc(c.name || 'q')}"/>
+    case 'search': {
+      return `<div class="siter-search" data-siter-search data-target-all="${c.targetAll !== false}" data-target-ids="${escAttr((c.targetPageIds || []).join(','))}" data-no-results="${escAttr(c.noResultsText || 'Ничего не найдено')}">
+        <div style="width:100%;height:100%;display:flex;align-items:center;padding:0 14px;gap:8px">
+          <span style="opacity:.5;font-size:14px">🔍</span>
+          <input type="search" class="siter-input" style="padding:0" placeholder="${escAttr(c.placeholder || 'Поиск…')}" value="${escAttr(c.value || '')}" name="${escAttr(c.name || 'q')}" data-search-input autocomplete="off"/>
+        </div>
+        <div class="siter-search__results" data-search-results></div>
       </div>`;
+    }
 
     /* КАРТОЧКИ И UI */
     case 'card':
@@ -1664,12 +1699,19 @@ function renderInner(el) {
 
     case 'team': {
       const members = c.members || [];
-      return `<div class="siter-team">${members.map(m => `
-        <div class="siter-team__item">
+      return `<div class="siter-team">${members.map(m => {
+        const inner = `
           <div class="siter-team__avatar" style="${m.avatar ? `background-image:url(${esc(m.avatar)})` : 'background-image:linear-gradient(135deg,#4f7cff,#a06bff)'}"></div>
           <div class="siter-team__name">${esc(m.name || '')}</div>
-          <div class="siter-team__role">${esc(m.role || '')}</div>
-        </div>`).join('')}</div>`;
+          <div class="siter-team__role">${esc(m.role || '')}</div>`;
+        let href = '';
+        if (m.linkType === 'url' && m.url) href = m.url;
+        else if (m.linkType === 'page' && m.url) href = m.url;
+        else if (m.linkType === 'email' && m.url) href = 'mailto:' + m.url;
+        else if (m.linkType === 'tel' && m.url) href = 'tel:' + m.url.replace(/\s/g, '');
+        if (href) return `<a href="${escAttr(href)}" class="siter-team__item siter-team__item--link">${inner}</a>`;
+        return `<div class="siter-team__item">${inner}</div>`;
+      }).join('')}</div>`;
     }
 
     case 'table': {
@@ -1744,13 +1786,27 @@ function renderInner(el) {
       </nav>`;
     }
 
-    case 'breadcrumb':
-      return `<div class="siter-breadcrumb">${(c.items || []).map((i, k, a) => `<span>${esc(i)}</span>${k < a.length - 1 ? `<i>${esc(c.separator || '/')}</i>` : ''}`).join('')}</div>`;
+    case 'breadcrumb': {
+      const items = c.items || [];
+      return `<div class="siter-breadcrumb">${items.map((i, k, a) => {
+        const label = typeof i === 'string' ? i : (i.label || '');
+        const url = typeof i === 'string' ? '' : (i.url || '');
+        const isLast = k === a.length - 1;
+        const elem = (url && !isLast) ? `<a href="${escAttr(url)}">${esc(label)}</a>` : `<span>${esc(label)}</span>`;
+        return elem + (isLast ? '' : `<i>${esc(c.separator || '/')}</i>`);
+      }).join('')}</div>`;
+    }
 
     case 'pagination': {
       const n = c.pages || 5;
       const cur = num(c.current) || 1;
-      return `<div class="siter-pagination" data-siter-pagination>${Array.from({ length: n }, (_, i) => `<button type="button" class="${i + 1 === cur ? 'on' : ''}" data-page="${i + 1}">${i + 1}</button>`).join('')}</div>`;
+      const urls = c.pageUrls || [];
+      return `<div class="siter-pagination" data-siter-pagination>${Array.from({ length: n }, (_, i) => {
+        const num_ = i + 1;
+        const url = urls[i] || '';
+        if (url) return `<a href="${escAttr(url)}" class="${num_ === cur ? 'on' : ''}" data-page="${num_}">${num_}</a>`;
+        return `<button type="button" class="${num_ === cur ? 'on' : ''}" data-page="${num_}">${num_}</button>`;
+      }).join('')}</div>`;
     }
 
     case 'sidebar': {
@@ -1768,7 +1824,7 @@ function renderInner(el) {
       return `<div style="display:grid;grid-template-columns:repeat(${(c.items || []).length || 3}, 1fr);gap:24px;width:100%;height:100%">
         ${(c.items || []).map(col => `<div>
           <div style="font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">${esc(col.title || '')}</div>
-          ${(col.list || []).map(l => `<a href="#" style="display:block;padding:6px 0;color:#8b93a7;font-size:13px;text-decoration:none;transition:.15s">${esc(l)}</a>`).join('')}
+          ${(col.links || []).map(l => `<a href="${escAttr(l.url || '#')}" style="display:block;padding:6px 0;color:#8b93a7;font-size:13px;text-decoration:none;transition:.15s">${esc(l.label || '')}</a>`).join('')}
         </div>`).join('')}
       </div>`;
 
@@ -2169,7 +2225,9 @@ function onAssetUpload(e) {
     const rd = new FileReader();
     rd.onload = async ev => {
       const type = f.type.startsWith('image') ? 'image' : f.type.startsWith('video') ? 'video' : f.type.startsWith('audio') ? 'audio' : 'file';
-      const asset = { id: uid(), name: f.name, type, data: ev.target.result, size: f.size, created: Date.now() };
+      const safe = f.name.replace(/[^\wа-яё\-. ]/gi, '_').replace(/\s+/g, '_');
+      const filename = uid().slice(0, 8) + '-' + safe;
+      const asset = { id: uid(), name: f.name, filename, type, data: ev.target.result, size: f.size, created: Date.now() };
       State.assets.push(asset);
       try { await DB.put(asset); } catch (err) {}
       done++;
@@ -2570,14 +2628,15 @@ function _buildRepeaterItems(id) {
   return d.items.map((item, i) => {
     const fieldsHtml = d.fields.map(f => {
       const val = item[f.key] == null ? '' : item[f.key];
+      const label = f.label ? `<div class="rep-field-label">${esc(f.label)}</div>` : '';
       if (f.type === 'textarea') {
-        return `<textarea placeholder="${escAttr(f.placeholder || '')}" oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)">${esc(val)}</textarea>`;
+        return `<div class="rep-field">${label}<textarea placeholder="${escAttr(f.placeholder || '')}" oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)">${esc(val)}</textarea></div>`;
       } else if (f.type === 'select') {
-        return `<select oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)">${(f.options || []).map(o => `<option value="${escAttr(o)}" ${val === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
+        return `<div class="rep-field">${label}<select oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)">${(f.options || []).map(o => `<option value="${escAttr(o)}" ${val === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></div>`;
       } else if (f.type === 'checkbox') {
         return `<label class="net-chk" style="margin:0"><input type="checkbox" ${val ? 'checked' : ''} onchange="updRepeaterField('${id}', ${i}, '${f.key}', this.checked)"/>${esc(f.label || '')}</label>`;
       } else {
-        return `<input type="text" placeholder="${escAttr(f.placeholder || '')}" value="${escAttr(val)}" oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)"/>`;
+        return `<div class="rep-field">${label}<input type="text" placeholder="${escAttr(f.placeholder || '')}" value="${escAttr(val)}" oninput="updRepeaterField('${id}', ${i}, '${f.key}', this.value)"/></div>`;
       }
     }).join('');
     return `<div class="rep-item">
@@ -2666,10 +2725,9 @@ function renderContentBox(el) {
   if (['h1', 'h2', 'h3', 'h4', 'paragraph', 'blockquote', 'label', 'link', 'code', 'highlight'].includes(t)) {
     h = textArea('text', 'Текст', t === 'paragraph' || t === 'code' ? 5 : 3);
   }
-  else if (t === 'list-ul' || t === 'list-ol' || t === 'timeline' || t === 'steps' || t === 'breadcrumb' || t === 'sidebar') {
+  else if (t === 'list-ul' || t === 'list-ol' || t === 'timeline' || t === 'steps' || t === 'sidebar') {
     h = repeaterSimple('items', 'Пункты');
     if (t === 'sidebar') h += inputText('brand', 'Бренд');
-    if (t === 'breadcrumb') h += inputText('separator', 'Разделитель', '/');
     if (t === 'steps') h += checkboxField('showNumbers', 'Показывать номера', true);
   }
   /* ================= MEDIA ================= */
@@ -2836,29 +2894,38 @@ function renderContentBox(el) {
     h = textArea('text', 'Текст', 3);
   }
   else if (t === 'pagination') {
+    const urls = (c.pageUrls || []).join('\n');
     h = numberField('pages', 'Всего страниц', 5, 1, 12)
-      + numberField('current', 'Активная страница', 1, 1, 12);
+      + numberField('current', 'Активная страница', 1, 1, 12)
+      + `<div class="row col"><label class="w">URL для каждой страницы (по одной на строку, пусто = без ссылки)</label>
+        <textarea class="code-in" rows="5" placeholder="index.html&#10;page-2.html&#10;page-3.html" oninput="setPaginationUrls(this.value)">${esc(urls)}</textarea></div>`
+      + `<div class="rep-hint">💡 Если URL указан — кнопка станет ссылкой. Если пусто — просто переключатель активного состояния.</div>`;
   }
   else if (t === 'breadcrumb') {
-    h = repeaterSimple('items', 'Пункты')
-      + inputText('separator', 'Разделитель', '/');
+    const itemsStr = (c.items || []).map(i =>
+      typeof i === 'string' ? i : `${i.label || ''} | ${i.url || ''}`
+    ).join('\n');
+    h = inputText('separator', 'Разделитель', '/')
+      + `<div class="row col"><label class="w">Пункты — формат «Label | URL», последний без URL</label>
+        <textarea class="code-in" rows="5" placeholder="Главная | index.html&#10;Каталог | catalog.html&#10;Товар" oninput="setBreadcrumbItems(this.value)">${esc(itemsStr)}</textarea></div>`
+      + `<div class="rep-hint">💡 Последний пункт всегда без ссылки (это текущая страница).</div>`;
   }
   else if (t === 'megamenu') {
-    h = renderRepeater('rep-' + el.id + '-mm', c.items || [], [
-      { key: 'title', type: 'text', placeholder: 'Колонка', label: 'Заголовок колонки' },
-      { key: 'list', type: 'textarea', placeholder: 'Пункт 1\nПункт 2', label: 'Пункты (по одному на строку)' }
-    ], (items) => setContent('items', items.map(i => ({ title: i.title, list: typeof i.list === 'string' ? i.list.split('\n').filter(Boolean) : (i.list || []) }))));
-    // Пост-обработка: превратить массивы в строки для textarea
-    setTimeout(() => {
-      const box2 = document.querySelector(`.repeater[data-rep-id="rep-${el.id}-mm"]`);
-      if (box2) {
-        const tas = box2.querySelectorAll('textarea');
-        const items = c.items || [];
-        tas.forEach((ta, i) => {
-          if (items[i] && Array.isArray(items[i].list)) ta.value = items[i].list.join('\n');
-        });
-      }
-    }, 0);
+    const reps = (c.items || []).map(col => ({
+      title: col.title || '',
+      links: (col.links || []).map(l => `${l.label} | ${l.url || '#'}`).join('\n')
+    }));
+    h = renderRepeater('rep-' + el.id + '-mm', reps, [
+      { key: 'title', type: 'text', placeholder: 'Продукты', label: 'Заголовок колонки' },
+      { key: 'links', type: 'textarea', placeholder: 'Фича 1 | #&#10;Фича 2 | about.html', label: 'Пункты (Label | URL)' }
+    ], (items) => setContent('items', items.map(i => ({
+      title: i.title || '',
+      links: String(i.links || '').split('\n').map(s => s.trim()).filter(Boolean).map(line => {
+        const p = line.split('|').map(x => x.trim());
+        return { label: p[0] || '', url: p[1] || '#' };
+      })
+    }))))
+      + `<div class="rep-hint">💡 Каждый пункт: <b>Название | URL</b>. URL может быть <code>#anchor</code>, <code>page.html</code>, <code>https://…</code>.</div>`;
   }
   /* ================= FORM ================= */
   else if (t === 'form') {
@@ -2874,7 +2941,7 @@ function renderContentBox(el) {
       ], (items) => setContent('fields', items))
       + `<div class="rep-hint">💡 Если указан Action URL — POST-запрос туда. Иначе просто покажет сообщение.</div>`;
   }
-  else if (['input-text', 'input-email', 'input-pass', 'input-tel', 'input-number', 'input-url', 'textarea', 'date', 'time', 'search'].includes(t)) {
+  else if (['input-text', 'input-email', 'input-pass', 'input-tel', 'input-number', 'input-url', 'textarea', 'date', 'time'].includes(t)) {
     h = inputText('placeholder', 'Placeholder', 'Введите…')
       + inputText('value', 'Значение по умолчанию')
       + inputText('name', 'name атрибут')
@@ -2889,6 +2956,19 @@ function renderContentBox(el) {
       h += `<div class="g2"><div class="fld"><label>min дата</label><input type="date" value="${escAttr(c.min || '')}" oninput="setContent('min',this.value)"/></div>
             <div class="fld"><label>max дата</label><input type="date" value="${escAttr(c.max || '')}" oninput="setContent('max',this.value)"/></div></div>`;
     }
+  }
+  else if (t === 'search') {
+    h = inputText('placeholder', 'Placeholder', 'Поиск…')
+      + inputText('name', 'name атрибут', 'q')
+      + inputText('noResultsText', 'Текст «не найдено»', 'Ничего не найдено')
+      + checkboxField('targetAll', 'Искать по всем страницам сайта', true);
+    if (c.targetAll === false) {
+      h += `<div class="row col"><label class="w">Страницы для поиска</label></div>
+        <div class="net-grid" style="grid-template-columns:1fr 1fr">${State.pages.map(p => `
+          <label class="net-chk"><input type="checkbox" ${(c.targetPageIds || []).includes(p.id) ? 'checked' : ''} onchange="toggleSearchTarget('${p.id}',this.checked)"/>${esc(p.name)}</label>
+        `).join('')}</div>`;
+    }
+    h += `<div class="rep-hint">💡 Поиск работает по заголовкам и описаниям страниц. Результаты показываются под полем ввода.</div>`;
   }
   else if (t === 'select') {
     h = inputText('placeholder', 'Placeholder (первая опция)', 'Выберите…')
@@ -2981,10 +3061,13 @@ function renderContentBox(el) {
   }
   else if (t === 'team') {
     h = renderRepeater('rep-' + el.id + '-tm', c.members || [], [
-      { key: 'name', type: 'text', placeholder: 'Имя', label: 'Имя' },
+      { key: 'name', type: 'text', placeholder: 'Иван Иванов', label: 'Имя' },
       { key: 'role', type: 'text', placeholder: 'CEO', label: 'Должность' },
-      { key: 'avatar', type: 'text', placeholder: 'https://…', label: 'Фото URL' }
-    ], (items) => setContent('members', items));
+      { key: 'avatar', type: 'text', placeholder: 'https://…/photo.jpg', label: 'Фото (URL)' },
+      { key: 'linkType', type: 'select', options: ['none', 'url', 'page', 'email', 'tel'], label: 'Тип ссылки' },
+      { key: 'url', type: 'text', placeholder: 'зависит от типа', label: 'Ссылка' }
+    ], (items) => setContent('members', items))
+      + `<div class="rep-hint">💡 Тип ссылки: <b>none</b> — карточка не кликается, <b>url</b> — внешняя, <b>page</b> — страница сайта (например <code>about.html</code>), <b>email</b>/<b>tel</b> — контакт.</div>`;
   }
   else if (t === 'stats') {
     h = renderRepeater('rep-' + el.id + '-st', c.items || [], [
@@ -3114,6 +3197,38 @@ const updateSocialUrl = (net, url) => {
   if (!el) return;
   const item = (el.content.items || []).find(i => i.net === net);
   if (item) item.url = url;
+  renderCanvas();
+  pushHistoryDebounced();
+};
+
+const setBreadcrumbItems = v => {
+  const el = selEl();
+  if (!el) return;
+  el.content.items = String(v).split('\n').map(s => s.trim()).filter(Boolean).map(line => {
+    const p = line.split('|').map(x => x.trim());
+    return { label: p[0] || '', url: p[1] || '' };
+  });
+  renderCanvas();
+  pushHistoryDebounced();
+};
+
+const setPaginationUrls = v => {
+  const el = selEl();
+  if (!el) return;
+  el.content.pageUrls = String(v).split('\n').map(s => s.trim());
+  renderCanvas();
+  pushHistoryDebounced();
+};
+
+const toggleSearchTarget = (pageId, on) => {
+  const el = selEl();
+  if (!el) return;
+  el.content.targetPageIds = el.content.targetPageIds || [];
+  if (on) {
+    if (!el.content.targetPageIds.includes(pageId)) el.content.targetPageIds.push(pageId);
+  } else {
+    el.content.targetPageIds = el.content.targetPageIds.filter(id => id !== pageId);
+  }
   renderCanvas();
   pushHistoryDebounced();
 };
@@ -3914,6 +4029,56 @@ const RUNTIME_JS = `
     updateClocks();
     setInterval(updateClocks, 1000);
   }
+
+  /* ---------- Search ---------- */
+  var searchIndex = (typeof window.__SITER_SEARCH_INDEX__ !== 'undefined' && Array.isArray(window.__SITER_SEARCH_INDEX__)) ? window.__SITER_SEARCH_INDEX__ : [];
+  function escapeHtmlSearch(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  qsa('[data-siter-search]').forEach(function(wrap){
+    var input = wrap.querySelector('[data-search-input]');
+    var results = wrap.querySelector('[data-search-results]');
+    if (!input || !results) return;
+    var targetAll = wrap.getAttribute('data-target-all') !== 'false';
+    var targetIds = (wrap.getAttribute('data-target-ids') || '').split(',').filter(Boolean);
+    var noResults = wrap.getAttribute('data-no-results') || 'Ничего не найдено';
+
+    var allowed = searchIndex.filter(function(p){
+      if (targetAll) return true;
+      return targetIds.indexOf(p.id) > -1 || targetIds.indexOf(p.slug) > -1;
+    });
+
+    var closeResults = function(){ results.classList.remove('on'); };
+
+    input.addEventListener('input', function(){
+      var q = (input.value || '').trim().toLowerCase();
+      if (!q) { closeResults(); return; }
+      var hits = allowed.filter(function(p){
+        return (p.title || '').toLowerCase().indexOf(q) > -1
+            || (p.description || '').toLowerCase().indexOf(q) > -1
+            || (p.slug || '').toLowerCase().indexOf(q) > -1;
+      }).slice(0, 8);
+      if (!hits.length) {
+        results.innerHTML = '<div class="siter-search__empty">' + escapeHtmlSearch(noResults) + '</div>';
+      } else {
+        results.innerHTML = hits.map(function(p){
+          return '<a class="siter-search__item" href="' + p.url + '">' + escapeHtmlSearch(p.title) + (p.description ? '<small>' + escapeHtmlSearch(p.description) + '</small>' : '') + '</a>';
+        }).join('');
+      }
+      results.classList.add('on');
+    });
+
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') {
+        var first = results.querySelector('.siter-search__item');
+        if (first) { e.preventDefault(); window.location.href = first.getAttribute('href'); }
+      }
+      if (e.key === 'Escape') closeResults();
+    });
+
+    document.addEventListener('click', function(e){
+      if (!wrap.contains(e.target)) closeResults();
+    });
+  });
 })();
 `;
 
@@ -3963,7 +4128,7 @@ function exportPageHTML(page) {
       .el--hero-split{ display:flex !important; flex-direction:column !important; }
     }` : '';
 
-  return `<!DOCTYPE html>
+  let html = `<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -4007,10 +4172,29 @@ ${elementsHTML}
 </div>
 ${modalsHtml}
 ${seo.body || ''}
+<script>window.__SITER_SEARCH_INDEX__ = ${JSON.stringify(State.pages.map(p => ({
+  id: p.id,
+  slug: p.isHome ? 'index' : p.slug,
+  title: (p.seo && p.seo.title) || p.name,
+  description: (p.seo && p.seo.description) || '',
+  url: (p.isHome ? 'index' : p.slug) + '.html'
+})))};<\/script>
 <script>${RUNTIME_JS}<\/script>
 ${rawJs ? `<script>${rawJs}<\/script>` : ''}
 </body>
 </html>`;
+
+  /* Замена base64 → пути к файлам в assets/ */
+  const assetMap = {};
+  State.assets.forEach(a => {
+    if (a.data) {
+      const fn = a.filename || (uid().slice(0, 8) + '-' + a.name.replace(/[^\wа-яё\-. ]/gi, '_').replace(/\s+/g, '_'));
+      assetMap[a.data] = 'assets/' + fn;
+    }
+  });
+  html = html.replace(/data:[^;"]+;base64,[A-Za-z0-9+/=]+/g, m => assetMap[m] || m);
+
+  return html;
 }
 
 function exportSingleHTML() {
@@ -4086,7 +4270,7 @@ function exportZIP() {
       const bin = atob(m[2]);
       const bytes = new Uint8Array(bin.length);
       for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      const safeName = a.name.replace(/[^\wа-яё\-. ]/gi, '_');
+      const safeName = a.filename || (a.name.replace(/[^\wа-яё\-. ]/gi, '_'));
       files.push({ name: 'assets/' + safeName, data: bytes });
     }
     files.push({ name: 'README.txt', data: `SITER Geenerik v6 — экспорт проекта\n\nПроект: ${State.projectName}\nСтраниц: ${State.pages.length}\nДата: ${new Date().toLocaleString('ru-RU')}\n\nСтруктура:\n${State.pages.map(p => '  ' + (p.isHome ? 'index.html (главная)' : p.slug + '/index.html')).join('\n')}\n\nЗагрузите содержимое архива на любой хостинг.\n` });
@@ -4136,6 +4320,7 @@ function loadJSON() {
         State.currentPageId = State.pages[0].id;
         State.selectedId = null;
         State.history = []; State.historyIndex = -1;
+        migrateProject();
         pushHistory(); renderAll();
         Toast.ok('Проект загружен');
       } catch (err) { Toast.err('Ошибка: ' + err.message); }
@@ -4405,6 +4590,54 @@ $('#projWrap').addEventListener('click', e => {
 });
 
 /* ============================================================
+   MIGRATION
+   ============================================================ */
+function migrateProject() {
+  let changed = false;
+  State.pages.forEach(p => {
+    p.elements.forEach(el => {
+      const c = el.content || {};
+      if (el.type === 'team' && Array.isArray(c.members)) {
+        c.members = c.members.map(m => ({
+          name: m.name || '', role: m.role || '', avatar: m.avatar || '',
+          linkType: m.linkType || 'none', url: m.url || ''
+        }));
+        changed = true;
+      }
+      if (el.type === 'breadcrumb' && Array.isArray(c.items)) {
+        c.items = c.items.map(i => typeof i === 'string' ? { label: i, url: '' } : i);
+        changed = true;
+      }
+      if (el.type === 'megamenu' && Array.isArray(c.items)) {
+        c.items = c.items.map(col => {
+          if (Array.isArray(col.links)) return col;
+          const list = Array.isArray(col.list) ? col.list : [];
+          return { title: col.title || '', links: list.map(l => typeof l === 'string' ? { label: l, url: '#' } : l) };
+        });
+        changed = true;
+      }
+      if (el.type === 'pagination' && !Array.isArray(c.pageUrls)) {
+        c.pageUrls = Array.from({ length: c.pages || 5 }, () => '');
+        changed = true;
+      }
+      if (el.type === 'search' && c.targetAll === undefined) {
+        c.targetAll = true;
+        c.targetPageIds = c.targetPageIds || [];
+        c.noResultsText = c.noResultsText || 'Ничего не найдено';
+        changed = true;
+      }
+    });
+  });
+  State.assets.forEach(a => {
+    if (!a.filename) {
+      a.filename = uid().slice(0, 8) + '-' + a.name.replace(/[^\wа-яё\-. ]/gi, '_').replace(/\s+/g, '_');
+      changed = true;
+    }
+  });
+  if (changed) console.log('SITER: миграция проекта выполнена');
+}
+
+/* ============================================================
    INIT
    ============================================================ */
 (async function init() {
@@ -4415,6 +4648,7 @@ $('#projWrap').addEventListener('click', e => {
   document.head.appendChild(compStyle);
 
   await loadLocal();
+  migrateProject();
   State.currentPageId = State.pages[0].id;
 
   renderLib();
@@ -4431,7 +4665,7 @@ $('#projWrap').addEventListener('click', e => {
 
   window.addEventListener('beforeunload', () => saveLocal());
 
-  console.log('%cSITER Geenerik v6', 'font-weight:900;font-size:16px;color:#4f7cff', '— редактор готов');
+  console.log('%cSITER Geenerik v7', 'font-weight:900;font-size:16px;color:#4f7cff', '— редактор готов');
 })();
 </script>
 </body>
